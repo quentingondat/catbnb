@@ -1,5 +1,15 @@
-<h1>Meet <%=@user.name%></h1>
-<h3>Email adress :</h3>
-<p><%=@user.email%></p>
-<h3>Description :</h3>
-<p><%=@user.description%></p>
+<div class="wrapper">
+  <h1>Meet <%=@user.name%></h1>
+
+  <% if @user.photo? %>
+    <%= cl_image_tag @user.photo.path, width: 200, height: 300, crop: :fill %>
+  <% end %>
+
+  <h3>Email adress :</h3>
+  <p><%=@user.email%></p>
+
+  <h3>Description :</h3>
+  <p><%=@user.description%></p>
+
+  <%= link_to "Edit", "#", class: "btn btn-primary" %>
+</div>
