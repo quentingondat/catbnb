@@ -1,5 +1,7 @@
 class CatsController < ApplicationController
   before_action :set_cat, only: [:show, :edit, :update, :destroy]
+  before_action :get_current_user
+
   def index
     @cats = Cat.all
   end
@@ -9,6 +11,7 @@ class CatsController < ApplicationController
 
   def create
     @cat = Cat.new(user_params)
+    @cat.user = @user
     @cat.save
     redirect_to cats_path
   end
@@ -39,5 +42,9 @@ class CatsController < ApplicationController
 
   def set_cat
     @cat = Cat.find(params[:id])
+  end
+
+  def get_current_user
+    @user = current_user
   end
 end
