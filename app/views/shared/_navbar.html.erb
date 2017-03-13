@@ -1,15 +1,23 @@
 <div class="navbar-catbnb">
   <!-- Logo -->
-  <a href="/" class="navbar-catbnb-brand">
-    <img src="../../assets/images/logo.png"/>
-  </a>
-      <!-- Search form -->
-    <form action="" class="navbar-catbnb-search">
-      <input type="text" class="navbar-catbnb-search-input" placeholder="Search something">
-      <button type="submit" class="navbar-catbnb-search-btn">
-        <i class="fa fa-search"></i>
-      </button>
-    </form>
+  <div class="navbar-catbnb-left">
+    <div class="navbar-catbnb-item">
+      <%= link_to root_path, class: "navbar-catbnb-brand" do %>
+        <%= image_tag "logo.png"%>
+      <% end %>
+    </div>
+          <!-- Search form -->
+    <div class="navbar-catbnb-item">
+      <% unless  params[:controller] == "pages" && params[:action] == "home" %>
+        <form action="" class="navbar-catbnb-search">
+          <input type="text" class="navbar-catbnb-search-input" placeholder="Search for a cat">
+          <button type="submit" class="navbar-catbnb-search-btn">
+            <i class="fa fa-search"></i>
+          </button>
+        </form>
+      <% end %>
+    </div>
+  </div>
 
   <!-- Right Navigation -->
   <div class="navbar-catbnb-right hidden-xs hidden-sm">
