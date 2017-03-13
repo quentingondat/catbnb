@@ -9,3 +9,7 @@
 <small><%= link_to "Back to index", cats_path %></small>
 <small><%= link_to "Delete", cat_path(@cat),
 method: :delete %></small>
+
+<% if @cat.photo? %>
+  <%= cl_image_tag @product.photo.path, width: 200, height: 300, crop: :fill %>
+<% end %>
