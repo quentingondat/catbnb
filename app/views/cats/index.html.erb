@@ -1,12 +1,22 @@
 <% @cats.each do |cat| %>
-  <h3><%=link_to cat.name, cat_path(cat) %></h3>
-  <p><%= cat.description %></p>
-    <ul>
-      <li>
-        <i class="fa fa-star"></i> <%= cat.address %>
-      </li>
-      <li>
-        <i class="fa fa-star"></i> <%= cat.race %>
-      </li>
-    </ul>
-<% end %>
+    <div class="col-xs-12 col-sm-4">
+      <div class="card" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url(
+                        <% if @product.photo? %>
+                          <%= image_path('default-cat-picture.jpg') %>
+                        <% else %>
+                          <%= icat.photo.path %>
+                        <% end %>
+
+      );">
+        <div class="card-category"><%=cat.race%></div>
+        <div class="card-description">
+          <h2><%=cat.name%></h2>
+          <p><%=cat.price_per_day%>€ per day!</p>
+        </div>
+        <img class="card-user avatar" src="http://lorempixel.com/200/200/people/<%=i%>">
+        <a class="card-link" href=<%=cat_path(cat)%> ></a>
+      </div>
+    </div>
+<%end%>
+
+
