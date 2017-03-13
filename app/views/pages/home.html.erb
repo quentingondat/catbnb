@@ -1,2 +1,33 @@
-<h1>Pages#home</h1>
-<p>Find me in app/views/pages/home.html.erb</p>
+<div class="banner" style="background-image: linear-gradient(-225deg, rgba(0,101,168,0.6) 0%, rgba(0,36,61,0.6) 50%), url(<%=image_path "catbnb-banner.jpeg"%>);">
+  <div class="banner-content">
+    <h1>New buddies, right meow!</h1>
+    <p>Discover and rent awesome cats all around the world.</p>
+    <form class="form-inline">
+      <input type="text" class="form-control input-lg" placeholder="Region / City / Address">
+      <input type="submit" class="btn btn-primary btn-lg" value="Search">
+    </form>
+  </div>
+</div>
+
+<div class="container">
+  <div class="row">
+    <div class="col-xs-12">
+      <h2>Check out those charming felines!</h2>
+    </div>
+  </div>
+  <div class="row">
+  <% Cat.all.sample(6).each_with_index do |cat, i|%>
+    <div class="col-xs-12 col-sm-4">
+      <div class="card" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url(http://lorempixel.com/400/200/cats/<%=i%>);">
+        <div class="card-category"><%=cat.race%></div>
+        <div class="card-description">
+          <h2><%=cat.name%></h2>
+          <p><%=cat.price_per_day%>€ per day!</p>
+        </div>
+        <img class="card-user avatar" src="http://lorempixel.com/200/200/people/<%=i%>">
+        <a class="card-link" href=<%=cat_path(cat)%> ></a>
+      </div>
+    </div>
+    <%end%>
+  </div>
+</div>
