@@ -19,6 +19,14 @@
       <%= link_to 'Cats', '#', class: "navbar-catbnb-item navbar-catbnb-link"  %>
       <%= link_to 'Profile', '#', class: "navbar-catbnb-item navbar-catbnb-link" %>
       <%= link_to 'Aide', '#', class: "navbar-catbnb-item navbar-catbnb-link" %>
+      <div class="navbar-catbnb-item">
+        <div class="dropdown">
+          <img src="http://placehold.it/50x50" class="avatar dropdown-toggle" id="navbar-catbnb-menu" data-toggle="dropdown">
+          <ul class="dropdown-menu dropdown-menu-right navbar-catbnb-dropdown-menu">
+            <li><%= link_to 'Log Out', 'users/sign_out', method: :delete %></li>
+          </ul>
+        </div>
+      </div>
 
     <% else %>
 
@@ -31,15 +39,7 @@
 
 
     <!-- Profile picture and dropdown -->
-<!--     <div class="navbar-catbnb-item">
-      <div class="dropdown">
-        <img src="http://placehold.it/50x50" class="avatar dropdown-toggle" id="navbar-catbnb-menu" data-toggle="dropdown">
-        <ul class="dropdown-menu dropdown-menu-right navbar-catbnb-dropdown-menu">
-          <li><a href="#">Log Out</a></li>
-        </ul>
-      </div>
-    </div>
- -->
+
   </div>
 
   <!-- Dropdown appearing on mobile only -->
