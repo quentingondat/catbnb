@@ -13,32 +13,25 @@
 
   <!-- Right Navigation -->
   <div class="navbar-catbnb-right hidden-xs hidden-sm">
-   <!-- if user_signed_in?  -->
+  <% if user_signed_in? %>
 
+      <%= link_to 'Dashboard', '#', class: "navbar-catbnb-item navbar-catbnb-link" %>
+      <%= link_to 'Cats', '#', class: "navbar-catbnb-item navbar-catbnb-link"  %>
+      <%= link_to 'Profile', '#', class: "navbar-catbnb-item navbar-catbnb-link" %>
+      <%= link_to 'Aide', '#', class: "navbar-catbnb-item navbar-catbnb-link" %>
 
+    <% else %>
 
-    <!-- Text link -->
-    <a href="" class="navbar-catbnb-item navbar-catbnb-link">Dashboard</a>
+      <%= link_to 'Aide', '#', class: "navbar-catbnb-item navbar-catbnb-link" %>
+      <%= link_to 'Sign Up', '/users/sign_up', class: "navbar-catbnb-item navbar-catbnb-link"  %>
+      <%= link_to 'Sign In', '/users/sign_in', class: "navbar-catbnb-item navbar-catbnb-link" %>
 
-    <a href="" class="navbar-catbnb-item navbar-catbnb-link">Cats</a>
-
-    <a href="" class="navbar-catbnb-item navbar-catbnb-link">Profile</a>
-
-    <a href="" class="navbar-catbnb-item navbar-catbnb-link">Aide</a>
-
-      <!-- else -->
-    <!-- Text link -->
-<!--     <a href="" class="navbar-catbnb-item navbar-catbnb-link">Aide</a>
-
-    <a href="" class="navbar-catbnb-item navbar-catbnb-link">Sign In</a>
-
-    <a href="" class="navbar-catbnb-item navbar-catbnb-link">Sign Up</a> -->
- <!-- end -->
+    <% end %>
 
 
 
     <!-- Profile picture and dropdown -->
-    <div class="navbar-catbnb-item">
+<!--     <div class="navbar-catbnb-item">
       <div class="dropdown">
         <img src="http://placehold.it/50x50" class="avatar dropdown-toggle" id="navbar-catbnb-menu" data-toggle="dropdown">
         <ul class="dropdown-menu dropdown-menu-right navbar-catbnb-dropdown-menu">
@@ -46,7 +39,7 @@
         </ul>
       </div>
     </div>
-
+ -->
   </div>
 
   <!-- Dropdown appearing on mobile only -->
