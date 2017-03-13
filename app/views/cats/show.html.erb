@@ -1,15 +1,39 @@
-<h3><%= @cat.name %></h3>
-<h5><%= @cat.race %></h5>
-<h5><%= @cat.age %></h5>
-<h5><%= @cat.address %></h5>
-<p><%= @cat.description %></p>
-<small><%= @cat.user.email %></small>
-
-
-<small><%= link_to "Back to index", cats_path %></small>
-<small><%= link_to "Delete", cat_path(@cat),
-method: :delete %></small>
-
 <% if @cat.photo? %>
-  <%= cl_image_tag @product.photo.path, width: 200, height: 300, crop: :fill %>
-<% end %>
+<div class="banner banner-show" style="background-image: url(<%=image_path @cat.photo%>);">
+<% else %>
+<div class="banner banner-show" style="background-image: url(<%="http://lorempixel.com/1200/600/cats/#{@cat.id}"%>);">
+</div>
+<%end%>
+
+<div class="container">
+  <div class="row">
+    <div class="col-xs-2">
+      <div class="owner-card text-center">
+        <img class="avatar-large" src="http://lorempixel.com/200/200/people/<%=@cat.id%>">
+        <p><%= @cat.user.name%></p>
+      </div>
+    </div>
+    <div class="col-xs-6 cat-pres">
+      <h1><%= @cat.name %></h1>
+      <p><span class="show-race"><%= @cat.race %></span> <%= @cat.age %> years old</p>
+    </div>
+    <div class="col-xs-4">
+      <p><em>Book now!</em></p>
+    </div>
+    <div class="col-xs-8">
+      <p><%= @cat.address %></p>
+      <p><%= @cat.description %></p>
+      <small><%= @cat.user.email %></small>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-xs-8 col-xs-offset-2">
+      <small><%= link_to "Back to index", cats_path %></small>
+      <small><%= link_to "Delete", cat_path(@cat),
+      method: :delete %></small>
+    </div>
+  </div>
+</div>
+
+
+
