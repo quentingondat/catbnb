@@ -1,6 +1,6 @@
 class CatsController < ApplicationController
   before_action :set_cat, only: [:show, :edit, :update, :destroy]
-  before_action :get_current_user
+  before_action :get_current_user [:create, :update]
 
   def index
     @cats = Cat.all
@@ -37,7 +37,7 @@ class CatsController < ApplicationController
   private
 
   def user_params
-    params.require(:cat).permit(:name, :race, :age, :address, :price_per_day, :description, :cage, :litter, :cat_tree, :toys, :bowl, :outdoor, :belly_rubs)
+    params.require(:cat).permit(:name, :race, :age, :address, :price_per_day, :description, :cage, :litter, :cat_tree, :toys, :bowl, :outdoor, :belly_rubs, :photo)
   end
 
   def set_cat

@@ -3,9 +3,13 @@
 <h5><%= @cat.age %></h5>
 <h5><%= @cat.address %></h5>
 <p><%= @cat.description %></p>
-<small><%= @user.email %></small>
+<small><%= @cat.user.email %></small>
 
 
 <small><%= link_to "Back to index", cats_path %></small>
 <small><%= link_to "Delete", cat_path(@cat),
 method: :delete %></small>
+
+<% if @cat.photo? %>
+  <%= cl_image_tag @product.photo.path, width: 200, height: 300, crop: :fill %>
+<% end %>
