@@ -1,15 +1,35 @@
-<h3><%= @cat.name %></h3>
-<h5><%= @cat.race %></h5>
-<h5><%= @cat.age %></h5>
-<h5><%= @cat.address %></h5>
-<p><%= @cat.description %></p>
-<small><%= @cat.user.email %></small>
-
-
-<small><%= link_to "Back to index", cats_path %></small>
-<small><%= link_to "Delete", cat_path(@cat),
-method: :delete %></small>
-
 <% if @cat.photo? %>
-  <%= cl_image_tag @product.photo.path, width: 200, height: 300, crop: :fill %>
-<% end %>
+<div class="banner banner-show" style="background-image: url(<%=image_path @cat.photo%>);">
+<% else %>
+<div class="banner banner-show" style="background-image: url(<%="http://lorempixel.com/1200/600/cats/#{@cat.id}"%>);">
+</div>
+<%end%>
+
+<div class="container">
+  <div class="row">
+    <div class="col-xs-12 col-sm-9">-
+    </div>
+    <div class="col-xs-3">
+
+    </div>
+      <h3><%= @cat.name %></h3>
+      <h5><%= @cat.race %></h5>
+      <h5><%= @cat.age %></h5>
+      <h5><%= @cat.address %></h5>
+      <p><%= @cat.description %></p>
+      <small><%= @cat.user.email %></small>
+
+
+      <small><%= link_to "Back to index", cats_path %></small>
+      <small><%= link_to "Delete", cat_path(@cat),
+      method: :delete %></small>
+
+      <% if @cat.photo? %>
+        <%= cl_image_tag @product.photo.path, width: 200, height: 300, crop: :fill %>
+      <% end %>
+    </div>
+  </div>
+</div>
+
+
+
