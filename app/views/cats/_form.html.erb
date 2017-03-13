@@ -1,0 +1,30 @@
+<%= simple_form_for @cat do |f| %>
+  <%= f.error_notification %>
+  <div class="form-group">
+    <%= f.label :name, "Name:"%>
+    <%= f.text_field :name, class: "form-control" %>
+  </div>
+  <div class="form-group">
+    <%= f.label :race, "Race:"%>
+    <%= f.text_field :race, class: "form-control" %>
+  </div>
+  <div class="form-group">
+    <%= f.label :age, "Age:"%>
+    <%= f.text_field :age, class: "form-control" %>
+  </div>
+  <div class="form-group">
+    <%= f.label :address, "Address:"%>
+    <%= f.text_field :address, class: "form-control" %>
+  </div>
+  <div class="form-group">
+    <%= f.label :drescription, "Description:"%>
+    <%= f.text_field :description, class: "form-control" %>
+  </div>
+  <div class="form-group">
+    <%= f.label :price_per_day, "Price per day:"%>
+    <%= f.text_field :price_per_day, class: "form-control" %>
+  </div>
+  <div class="form-group">
+  <%= f.submit "Create Cat", class: "btn btn-primary" %>
+  </div>
+<% end %>
