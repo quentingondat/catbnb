@@ -1,2 +1,10 @@
-<h1>Cats#show</h1>
-<p>Find me in app/views/cats/show.html.erb</p>
+<h3><%= @cat.name %></h3>
+<h5><%= @cat.race %></h5>
+<h5><%= @cat.age %></h5>
+<h5><%= @cat.address %></h5>
+<p><%= @cat.description %></p>
+
+
+<small><%= link_to "Back to index", cats_path %></small>
+<small><%= link_to "Delete", cat_path(@cat),
+method: :delete %></small>
