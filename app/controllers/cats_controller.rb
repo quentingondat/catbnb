@@ -1,6 +1,6 @@
 class CatsController < ApplicationController
   before_action :set_cat, only: [:show, :edit, :update, :destroy]
-  before_action :get_current_user
+  before_action :get_current_user [:create, :update]
 
   def index
     @cats = Cat.all
