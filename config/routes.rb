@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
-  get 'users/show'
+
+  get 'dashboard', to: 'users#dashboard'
+  resources :users, only: :show
 
   devise_for :users
   root to: 'pages#home'
@@ -7,4 +9,6 @@ Rails.application.routes.draw do
   resources :cats
 
   mount Attachinary::Engine => "/attachinary"
+
+
 end
