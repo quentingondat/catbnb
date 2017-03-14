@@ -1,24 +1,91 @@
 .banner-show {
   height: 60vh;
   background-position: center center;
-  margin-bottom: 20px;
 }
 
 .show-race {
   font-weight: bolder;
 }
 
+.owner-card {
+  padding-top: 20px;
+}
+
+.cat-pres {
+  padding-top: 20px;
+}
+
 .cat-pres h1 {
+  margin-top: 0px;
   margin-bottom: -5px;
 }
 
-.booking {
-  box-shadow: 2px 2px 2px #E6E6E6;
-  padding: 20px;
-  border-radius: 8px;
-  background-color: #EEEEEC;
+.cat-characteristics {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 
-.booking h3 {
+.cat-characteristics .col-xs-3 {
+  padding-top: 10px;
+  display: flex;
+  align-items: center;
+}
+
+.cat-icon {
+  width: 32px;
+}
+
+.cat-age h3, p {
   margin: 0px;
+}
+
+.cat-rating i {
+  color: $yellow;
+}
+
+.cat-rating small {
+  color: grey;
+}
+
+.cat-description {
+  margin: 20px 0px;
+  display: flex;
+  align-items: center;
+}
+
+.cat-description p {
+  margin: 0px 20px;
+}
+
+.cat-description i {
+  font-size: 48px;
+  margin-bottom: 5px;
+  color: lightgrey;
+}
+
+.booking-title {
+  padding: 10px 20px;
+  background-color: #2d2d2d;
+  margin-top: -52px;
+  width: 100%;
+  color: white;
+}
+
+.booking-title .container {
+  height: 100%;
+}
+
+.booking-title h4 {
+  margin: 5px;
+}
+
+.booking {
+  background-color: #EEEEEC;
+  padding: 20px;
+  width: 100%;
+}
+
+hr {
+  margin: 10px 0px;
 }
