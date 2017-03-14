@@ -6,10 +6,12 @@
 }
 
 .container-with-footer{
+  padding: 50px;
   position: relative;
   margin-top: 70px;
-  height: calc(100vh - 70px);
+  height: calc(100vh - 154px);
   width: 100vw;
+  overflow: scroll;
 }
 
 .wider-container {

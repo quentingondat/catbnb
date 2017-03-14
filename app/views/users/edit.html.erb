@@ -1,5 +1,5 @@
-<div class="text-center">
-  <h1>Edit your profile</h1>
+<div class="text-center container-with-footer">
+  <h1 class="no-top-margin">Edit your profile</h1>
 
   <div class="form-inputs">
     <%= simple_form_for (current_user) do |f| %>
@@ -8,16 +8,15 @@
       <%= f.input :name, required: true%>
       <%= f.input :description, required: true%>
       <%= f.input :photo, as: :attachinary %>
-      <%= f.input :email, required: true, autofocus: true %>
-
-      <%= f.input :password, autocomplete: "off", hint: "leave it blank if you don't want to change it", required: false %>
-      <%= f.input :password_confirmation, required: false %>
-      <%= f.input :current_password, hint: "we need your current password to confirm your changes", required: true %>
 
       <%= f.submit "Update profile", class: "btn btn-primary" %>
     <% end %>
   </div>
+    <%= link_to "Update account settings", edit_user_registration_path %>
+
 </div>
 
-<%= link_to "Back", :back %>
+
+
+
 
