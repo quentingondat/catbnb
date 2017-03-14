@@ -1,6 +1,8 @@
 .align {
   display: flex;
   align-items: center;
+  justify-content: center;
+
   h3 {
     margin: 0;
   }
@@ -9,3 +11,14 @@
   }
 }
 
+.btn-edit {
+  margin-top: 50px;
+}
+
+.btn-space {
+  margin-right: 40px;
+}
+
+#greeting {
+margin-top: 0;
+}

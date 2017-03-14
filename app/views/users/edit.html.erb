@@ -1,1 +1,22 @@
+<div class="text-center container-with-footer">
+  <h1 class="no-top-margin">Edit your profile</h1>
+
+  <div class="form-inputs">
+    <%= simple_form_for (current_user) do |f| %>
+      <%= f.error_notification %>
+
+      <%= f.input :name, required: true%>
+      <%= f.input :description, required: true%>
+      <%= f.input :photo, as: :attachinary %>
+
+      <%= f.submit "Update profile", class: "btn btn-primary" %>
+    <% end %>
+  </div>
+    <%= link_to "Update account settings", edit_user_registration_path %>
+
+</div>
+
+
+
+
 
