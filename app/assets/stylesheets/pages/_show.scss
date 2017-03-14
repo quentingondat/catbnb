@@ -6,10 +6,19 @@
 
 .show-race {
   font-weight: bolder;
-  line-height: 1em;
 }
 
 .cat-pres h1 {
-  margin-top: 5px;
-  margin-bottom: 2px;
+  margin-bottom: -5px;
+}
+
+.booking {
+  box-shadow: 2px 2px 2px #E6E6E6;
+  padding: 20px;
+  border-radius: 8px;
+  background-color: #EEEEEC;
+}
+
+.booking h3 {
+  margin: 0px;
 }

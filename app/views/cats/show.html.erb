@@ -1,5 +1,6 @@
 <% if @cat.photo? %>
-<div class="banner banner-show" style="background-image: url(<%=image_path @cat.photo%>);">
+<div class="banner banner-show" style="background-image: url(<%=cl_image_path @cat.photo.path %>);">
+</div>
 <% else %>
 <div class="banner banner-show" style="background-image: url(<%="http://lorempixel.com/1200/600/cats/#{@cat.id}"%>);">
 </div>
@@ -15,13 +16,15 @@
     </div>
     <div class="col-xs-6 cat-pres">
       <h1><%= @cat.name %></h1>
+      <small><%= @cat.address %></small>
       <p><span class="show-race"><%= @cat.race %></span> <%= @cat.age %> years old</p>
     </div>
     <div class="col-xs-4">
-      <p><em>Book now!</em></p>
+      <div class="booking">
+        <h3 class="text-center">Book now!</h3>
+      </div>
     </div>
     <div class="col-xs-8">
-      <p><%= @cat.address %></p>
       <p><%= @cat.description %></p>
       <small><%= @cat.user.email %></small>
     </div>
