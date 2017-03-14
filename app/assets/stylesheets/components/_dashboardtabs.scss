@@ -1,0 +1,38 @@
+.dashboard-tabs {
+  background: #53443F;
+  display: flex;
+  padding: 10px 10px 0 10px
+}
+.dashboard-tabs a {
+  color: white;
+}
+.dashboard-tabs a:hover {
+  cursor: pointer;
+  text-decoration: none;
+  opacity: 0.8;
+}
+.dashboard-tabs h3 {
+  font-size: 17px;
+  font-weight: bold;
+  margin-top: 0;
+}
+.dashboard-tabs p {
+  opacity: 0.5;
+  margin-bottom: 0;
+}
+.dashboard-tab {
+  background: #756A66;
+  flex: 0 0 50%;
+  text-align: center;
+  padding: 20px 0;
+}
+.dashboard-tab:first-child {
+  border-radius: 10px 0 0 0;
+}
+.dashboard-tab:last-child {
+  border-radius: 0 10px 0 0;
+}
+.dashboard-tab.active {
+  background: white;
+  color: black;
+}
