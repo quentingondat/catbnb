@@ -1,36 +1,135 @@
 <% if @cat.photo? %>
-<div class="banner banner-show" style="background-image: url(<%=image_path @cat.photo.path%>);">
+
+<div class="banner banner-show" style="background-image: url(<%=cl_image_path @cat.photo.path %>);">
+
+
 <% else %>
 <div class="banner banner-show" style="background-image: url(<%="http://lorempixel.com/1200/600/cats/#{@cat.id}"%>);">
-</div>
 <%end%>
+  <div class="container">
+
+  </div>
+</div>
 
 <div class="container">
   <div class="row">
-    <div class="col-xs-2">
-      <div class="owner-card text-center">
-        <img class="avatar-large" src="http://lorempixel.com/200/200/people/<%=@cat.id%>">
-        <p><%= @cat.user.name%></p>
+    <div class="col-xs-8">
+      <div class="row row-cat-char">
+        <div class="col-xs-2 col-owner-card">
+          <div class="owner-card text-center">
+            <% if @cat.user.photo? %>
+              <img class="avatar-large" src=<%= image_path @cat.user.photo%> >
+            <% else %>
+              <img class="avatar-large" src="http://lorempixel.com/200/200/people/<%=@cat.id%>">
+            <% end %>
+            <p><%= @cat.user.name%></p>
+          </div>
+        </div>
+        <div class="col-xs-10 col-cat-name-adress-char">
+          <div class="col-xs-12 cat-pres">
+            <div class="col-xs-3">
+              <h1><%= @cat.name %></h1>
+            </div>
+            <div class="col-xs-6 col-xs-offset-3 cat-address">
+              <small><%= @cat.address %></small>
+            </div>
+          </div>
+          <div class="col-xs-12">
+            <div class="row text-center cat-characteristics">
+              <div class="col-xs-3">
+                <div class="icon-and-race">
+                  <%= image_tag 'cat-icon.png', class: "cat-icon" %>
+                  <p><span class="show-race"><%= @cat.race %></span></p>
+                </div>
+              </div>
+              <div class="col-xs-3">
+                <div class="cat-age">
+                  <% if @cat.age.to_f < 1 %>
+                    <h3>A few</h3>
+                    <p>monthes old</p>
+                  <%else%>
+                    <h3><%= @cat.age %></h3>
+                    <p>years old</p>
+                  <%end%>
+                </div>
+              </div>
+              <div class="col-xs-3">
+                <div class="cat-rating">
+                  <i class="fa fa-star" aria-hidden="true"></i>
+                  <i class="fa fa-star" aria-hidden="true"></i>
+                  <i class="fa fa-star" aria-hidden="true"></i>
+                  <i class="fa fa-star" aria-hidden="true"></i>
+                  <i class="fa fa-star-half" aria-hidden="true"></i>
+                  <small>82</small>
+                </div>
+              </div>
+              <div class="col-xs-3"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <hr>
+      <div class="row">
+        <div class="col-xs-10 col-xs-offset-2">
+          <div class="cat-description">
+            <i class="fa fa-quote-left" aria-hidden="true"></i><p><%= @cat.description %></p><i class="fa fa-quote-right" aria-hidden="true"></i>
+          </div>
+        </div>
+      </div>
+      <hr>
+<!--       <div class="row">
+        <div class="col-xs-10 col-xs-offset-2">
+          <h3>REVIEWS</h3>
+        </div>
+      </div>
+      <hr> -->
+      <div class="row">
+        <div class="col-xs-10 col-xs-offset-2">
+          <div class="owner-card">
+            <h4>My owner</h4>
+            <hr>
+            <div class="row">
+              <div class="col-xs-2">
+                <% if @cat.user.photo? %>
+                  <img class="avatar-large" src=<%= image_path @cat.user.photo%> >
+                <% else %>
+                  <img class="avatar-large" src="http://lorempixel.com/200/200/people/<%=@cat.id%>">
+                <% end %>
+                <h5><%= @cat.user.name%></h5>
+              </div>
+              <p><%= @cat.user.description%></p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <hr>
+      <div class="row">
+        <div class="col-xs-1">
+          <%= link_to "Back to index", cats_path, class: "btn btn-primary" %>
+        </div>
+        <% if current_user == @cat.user %>
+          <div class="col-xs-1 col-xs-offset-7">
+            <%= link_to "Edit #{@cat.name}", edit_cat_path(@cat), class: "btn btn-warning" %>
+          </div>
+          <div class="col-xs-1 col-xs-offset-1">
+            <%= link_to "Delete #{@cat.name}", cat_path(@cat),
+            method: :delete,
+            class: "btn btn-warning" %>
+          </div>
+        <% end %>
       </div>
     </div>
-    <div class="col-xs-6 cat-pres">
-      <h1><%= @cat.name %></h1>
-      <p><span class="show-race"><%= @cat.race %></span> <%= @cat.age %> years old</p>
-    </div>
-    <div class="col-xs-4">
-      <p><em>Book now!</em></p>
-    </div>
-    <div class="col-xs-8">
-      <p><%= @cat.address %></p>
-      <p><%= @cat.description %></p>
-      <small><%= @cat.user.email %></small>
-    </div>
-  </div>
-  <div class="row">
-    <div class="col-xs-8 col-xs-offset-2">
-      <small><%= link_to "Back to index", cats_path %></small>
-      <small><%= link_to "Delete", cat_path(@cat),
-      method: :delete %></small>
+    <div class="col-xs-3">
+      <div class="booking-title">
+        <h4>Book now!</h4>
+      </div>
+      <div class="booking">
+        <p>This is a form to book a cat blblblblbl</p>
+        <p>This is a form to book a cat blblblblbl</p>
+        <p>This is a form to book a cat blblblblbl</p>
+        <p>This is a form to book a cat blblblblbl</p>
+        <p>This is a form to book a cat blblblblbl</p>
+      </div>
     </div>
   </div>
 </div>
