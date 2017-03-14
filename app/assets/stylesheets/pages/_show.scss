@@ -7,6 +7,10 @@
   font-weight: bolder;
 }
 
+.col-owner-card, .col-cat-name-adress-char {
+  height: 100%;
+}
+
 .owner-card {
   padding-top: 20px;
 }
@@ -17,7 +21,11 @@
 
 .cat-pres h1 {
   margin-top: 0px;
-  margin-bottom: -5px;
+  margin-bottom: 5px;
+}
+
+.cat-address {
+  text-align: right;
 }
 
 .cat-characteristics {
