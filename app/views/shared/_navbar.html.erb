@@ -22,11 +22,18 @@
   <!-- Right Navigation -->
   <div class="navbar-catbnb-right hidden-xs hidden-sm">
   <% if user_signed_in? %>
-
-      <%= link_to 'Dashboard', '#', class: "navbar-catbnb-item navbar-catbnb-link" %>
-      <%= link_to 'Cats', '#', class: "navbar-catbnb-item navbar-catbnb-link"  %>
-      <%= link_to 'Profile', '#', class: "navbar-catbnb-item navbar-catbnb-link" %>
-      <%= link_to 'Aide', '#', class: "navbar-catbnb-item navbar-catbnb-link" %>
+      <div class="tab">
+        <%= link_to 'Dashboard', '#', class: "navbar-catbnb-item navbar-catbnb-link" %>
+      </div>
+      <div class="tab">
+        <%= link_to 'Cats', '#', class: "navbar-catbnb-item navbar-catbnb-link"  %>
+      </div>
+      <div class="tab">
+        <%= link_to 'Profile', '#', class: "navbar-catbnb-item navbar-catbnb-link" %>
+      </div>
+      <div class="tab">
+        <%= link_to 'Aide', '#', class: "navbar-catbnb-item navbar-catbnb-link" %>
+      </div>
       <div class="navbar-catbnb-item">
         <div class="dropdown">
           <img src="http://placehold.it/50x50" class="avatar dropdown-toggle" id="navbar-catbnb-menu" data-toggle="dropdown">
