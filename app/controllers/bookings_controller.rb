@@ -2,12 +2,8 @@ class BookingsController < ApplicationController
   def show
   end
 
-  def new
-    @cat = Cat.find(params[:cat_id])
-    @booking = Booking.new(booking_params)
-    @booking.cat = @cat
-    @booking.user = current_user
-  end
+  # def new
+  # end
 
   def create
     @cat = Cat.find(params[:cat_id])
