@@ -1,12 +1,6 @@
 
+<% unless  params[:controller] == "cats" && params[:action] == "index" %>
   <div class="footer">
- <!--      <ul class="list-inline">
-        <li><a href=""><i></i></a></li>
-        <li><a href="#"><i class="fa fa-youtube"></i></a></li>
-        <li><a href="#"><i class="fa fa-instagram"></i></a></li>
-        <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-        <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-      </ul> -->
       <div class="footer-left list-inline">
         <ul class="list-inline">
           <li> <%= image_tag "logo.png", class: "logo-footer" %> </li>
@@ -32,3 +26,4 @@
         </ul>
       </div>
   </div>
+<% end %>
