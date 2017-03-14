@@ -1,0 +1,19 @@
+.container-without-footer{
+  position: relative;
+  margin-top: 70px;
+  height: calc(100vh - 70px);
+  width: 100vw;
+}
+
+.container-with-footer{
+  position: relative;
+  margin-top: 70px;
+  height: calc(100vh - 70px);
+  width: 100vw;
+}
+
+.wider-container {
+  width: 100%;
+  height: calc(100vh - 70px);
+  overflow: scroll;
+}

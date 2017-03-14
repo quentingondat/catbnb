@@ -1,5 +1,8 @@
 <% if @cat.photo? %>
+
 <div class="banner banner-show" style="background-image: url(<%=cl_image_path @cat.photo.path %>);">
+
+
 <% else %>
 <div class="banner banner-show" style="background-image: url(<%="http://lorempixel.com/1200/600/cats/#{@cat.id}"%>);">
 <%end%>
