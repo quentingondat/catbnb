@@ -1,0 +1,17 @@
+.cat-index-container {
+  background-color: red;
+  color:red;
+  height: calc(100vh - 70px);
+  margin-top: 70px;
+  width: 100%;
+  background-color:red;
+}
+
+.cat-index-container .row {
+  height:100%;
+  overflow: scroll
+}
+
+h2 {
+  color:red;
+}
