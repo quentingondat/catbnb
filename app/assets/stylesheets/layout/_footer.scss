@@ -1,18 +1,32 @@
 // Your footer style
 .footer {
   border-top: 1px solid;
+  border-top-color: #DCE0E0;
   margin-top: 30px;
   padding: 30px;
   display: flex;
   position: relative;
   justify-content: space-between;
+  margin-left: 70px;
+  margin-right: 70px;
+  font-size: 12px;
+  font-color: black;
 }
 .footer-left {
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
+
 }
 .logo-footer {
   height: 30px;
+}
+.footer-right {
   display: flex;
-  position: absolute;
+  justify-content: space-between;
+}
+.link-footer{
+  color: #767676;
+  .fa {
+    font-size: 16px;
+  }
 }
