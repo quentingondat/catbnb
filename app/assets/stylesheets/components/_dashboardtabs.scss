@@ -36,3 +36,67 @@
   background: white;
   color: black;
 }
+
+
+.container {
+  margin-top: 70px;
+  ul {
+    list-style-type: none;
+  }
+}
+.cat-informations{
+  margin-top: 10px;
+  background-color: #F7F7F7;
+  padding: 10px;
+  border-radius: 5px;
+  color: black;
+  display: flex;
+  justify-content: align-items;
+}
+.cat-image {
+  border-radius: 10px;
+  margin-right: 20px;
+}
+
+.details {
+  font-size: 13px;
+  margin: 10px
+}
+
+.cat-name-and-desc .details {
+  // display: flex;
+  // align-items: center;
+}
+
+.cat-name-and-desc h3 {
+  margin-top: 0px;
+}
+.right-card {
+  border: solid;
+  border-color: #F7F7F7;
+  border-radius: 5px;
+  padding: 20px;
+  margin-top: 10px;
+}
+.right-card-elem {
+  margin-top: 10px;
+  padding-top: 10px;
+  border-bottom: #F7F7F7;
+}
+
+.cat-rating i {
+  color: #FDB631;
+  font-size: 12px;
+}
+.current-information {
+  border-top: solid 1px #B9B9B9;
+  padding: 5px;
+}
+.all-info {
+  display: flex;
+  align-items: center;
+  height: 200px;
+}
+.right-card-text a {
+  font-color: black;
+}

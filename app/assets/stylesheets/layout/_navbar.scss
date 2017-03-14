@@ -18,13 +18,13 @@
   position: fixed;
   left: 0px;
   top: 0px;
-  z-index: 1;
+  z-index: 1000;
   width: 100%;
 }
 
 /* Navbar logo */
 .navbar-catbnb-brand img {
-  width: 50px;
+  width: 40px;
 }
 
 /* Navbar right section (with form, links, button) */
