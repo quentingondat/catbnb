@@ -1,0 +1,34 @@
+
+  <div class="footer">
+ <!--      <ul class="list-inline">
+        <li><a href=""><i></i></a></li>
+        <li><a href="#"><i class="fa fa-youtube"></i></a></li>
+        <li><a href="#"><i class="fa fa-instagram"></i></a></li>
+        <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+        <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+      </ul> -->
+      <div class="footer-left list-inline">
+        <ul class="list-inline">
+          <li> <%= image_tag "logo.png", class: "logo-footer" %> </li>
+          <li> <p>© Catbnb, Inc.</p> </li>
+        </ul>
+      </div>
+      <div class="footer-right list-inline">
+        <ul class="list-inline">
+          <li><%= link_to "Terms & Privacy", "#", class: "link-footer" %></li>
+          <li><%= link_to "Site Map", "#", class: "link-footer" %></li>
+          <li><%= link_to "#", class: "link-footer fa" do %>
+            <i class="fa fa-facebook"></i>
+          <% end %></li>
+          <li><%= link_to "#", class: "link-footer fa" do %>
+            <i class="fa fa-twitter"></i>
+          <% end %></li>
+          <li><%= link_to "#", class: "link-footer fa" do %>
+            <i class="fa fa-instagram"></i>
+          <% end %></li>
+          <li><%= link_to "#", class: "link-footer fa" do %>
+            <i class="fa fa-youtube"></i>
+          <% end %></li>
+        </ul>
+      </div>
+  </div>
