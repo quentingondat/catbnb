@@ -1,4 +1,4 @@
-<div class="navbar-catbnb">
+<div class="navbar-catbnb navbar-catbnb-fixed">
   <!-- Logo -->
   <div class="navbar-catbnb-left">
     <div class="navbar-catbnb-item">
@@ -22,24 +22,31 @@
   <!-- Right Navigation -->
   <div class="navbar-catbnb-right hidden-xs hidden-sm">
   <% if user_signed_in? %>
-      <div class="tab">
-        <%= link_to 'Dashboard', '#', class: "navbar-catbnb-item navbar-catbnb-link" %>
+      <div class="tab-navbar">
+        <%= link_to 'Dashboard', '/dashboard', class: "navbar-catbnb-item navbar-catbnb-link" %>
       </div>
-      <div class="tab">
+  <!--     <div class="tab-navbar">
         <%= link_to 'Cats', '#', class: "navbar-catbnb-item navbar-catbnb-link"  %>
+      </div> -->
+      <div class="tab-navbar">
+        <%= link_to 'Profile', user_path(current_user), class: "navbar-catbnb-item navbar-catbnb-link" %>
       </div>
-      <div class="tab">
-        <%= link_to 'Profile', '#', class: "navbar-catbnb-item navbar-catbnb-link" %>
-      </div>
-      <div class="tab">
+      <div class="tab-navbar">
         <%= link_to 'Aide', '#', class: "navbar-catbnb-item navbar-catbnb-link" %>
       </div>
       <div class="navbar-catbnb-item">
         <div class="dropdown">
-          <img src="http://placehold.it/50x50" class="avatar dropdown-toggle" id="navbar-catbnb-menu" data-toggle="dropdown">
-          <ul class="dropdown-menu dropdown-menu-right navbar-catbnb-dropdown-menu">
-            <li><%= link_to 'Log Out', 'users/sign_out', method: :delete %></li>
-          </ul>
+          <% if current_user.photo? %>
+            <%= cl_image_tag current_user.photo.path, transformation: [{width: 250, height: 250, gravity: 'face', radius: 'max', crop: 'crop'}], class: "avatar dropdown-toggle", id: "navbar-catbnb-menu", data: { toggle: "dropdown" }%>
+            <ul class="dropdown-menu dropdown-menu-right navbar-catbnb-dropdown-menu">
+              <li><%= link_to 'Log Out', 'users/sign_out', method: :delete %></li>
+            </ul>
+          <% else %>
+            <%= image_tag "logo.png", transformation: [{width: 250, height: 250, gravity: 'face', radius: 'max', crop: 'crop'}], class: "avatar dropdown-toggle", id: "navbar-catbnb-menu", data: { toggle: "dropdown" }%>
+            <ul class="dropdown-menu dropdown-menu-right navbar-catbnb-dropdown-menu">
+              <li><%= link_to 'Log Out', 'users/sign_out', method: :delete %></li>
+            </ul>
+          <% end %>
         </div>
       </div>
 

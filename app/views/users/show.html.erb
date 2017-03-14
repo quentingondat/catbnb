@@ -1,8 +1,8 @@
 <div class="wrapper text-center">
-  <h1>Meet <%=@user.name%></h1>
+  <h1>Meet <%=current_user.name%></h1>
 
-  <% if @user.photo? %>
-    <%= cl_image_tag @user.photo.path, :transformation=>[
+  <% if current_user.photo? %>
+    <%= cl_image_tag current_user.photo.path, :transformation=>[
   {:width=>300, :height=>300, :gravity=>"face", :radius=>"max", :crop=>"crop"},
   {:width=>150, :crop=>"scale"}
   ] %>
@@ -11,21 +11,22 @@
 
   <div class="align">
   <h3>Name :</h3>
-  <p><%=@user.name%></p>
+  <p><%=current_user.name%></p>
   </div>
 
   <div class="align">
   <h3>Email adress :</h3>
-  <p><%=@user.email%></p>
+  <p><%=current_user.email%></p>
   </div>
 
   <h3>Description :</h3>
-  <p><%=@user.description%></p>
+  <p><%=current_user.description%></p>
 
   <% if user_signed_in?%>
     <div>
-      <%= link_to "Edit Profile", "#", class: "btn btn-primary" %>
-      <%= link_to "Delete Profile", "#", class: "btn btn-alert" %>
+      <%= link_to "Edit Profile", edit_profile_path, class: "btn btn-primary" %>
+      <%= link_to "Delete Profile", user_path(current_user), class: "btn btn-danger", method: :delete, data: { confirm: "Are you sure?" } %>
+
     </div>
   <% end %>
 </div>
