@@ -82,13 +82,7 @@
         <div class="dashboard-tab-content hidden" id="mybookings-content">
         <% current_user.bookings.each do |booking| %>
           <div class="mybooking">
-            <div class="col-xs-12 col-md-3">
-                    <%= link_to cat_path(cat), class: "text-center" do %>
-                        <% if cat.photo? %>
-                          <%= cl_image_tag cat.photo.path, width: 150, height: 100, crop: :fill, class: "cat-image" %>
-                        <% end %>
-                    <% end %>
-                  </div>
+
           </div>
         <% end %>
         <p>djhkdfjhbqkjbdf</p>
