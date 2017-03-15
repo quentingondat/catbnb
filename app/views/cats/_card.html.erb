@@ -1,0 +1,30 @@
+<div class="col-xs-12 col-sm-6">
+  <div class="card-index">
+    <div class="card-index-image" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url('<%= cat_photo_path(cat.photo) %>');">
+
+     <a class="card-link" href=<%=cat_path(cat)%> ></a>
+     <%= cl_image_tag cat_user_photo_path(cat.user.photo), transformation: [{width: 75, height: 75, gravity: 'face', radius: 'max', crop: :fill}], class: "avatar card-user" %>
+    </div>
+    <div class="card-index-text">
+      <div class="card-index-text-row">
+        <div class="card-index-text-price">
+          <strong><%=cat.price_per_day%> €</strong>
+        </div>
+        <div class="cat-rating">
+          <i class="fa fa-star" aria-hidden="true"></i>
+          <i class="fa fa-star" aria-hidden="true"></i>
+          <i class="fa fa-star" aria-hidden="true"></i>
+          <i class="fa fa-star" aria-hidden="true"></i>
+          <i class="fa fa-star-half" aria-hidden="true"></i>
+          <small>82 commentaires</small>
+        </div>
+      </div>
+      <div class="card-index-text-row">
+        <h5><%=cat.name%> - <%=cat.race%></h5>
+      </div>
+      <div class="card-index-text-row">
+        <small><%=cat.age%> ans · <%=cat.address%></small>
+      </div>
+    </div>
+  </div>
+</div>
