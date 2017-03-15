@@ -6,58 +6,59 @@
       </div>
 
       <div class="col-xs-12 col-md-9">
-      <% current_user.cats.each do |cat|%>
-        <%= link_to cat_path(cat) do %>
-          <div class="col-xs-12">
-            <div class="cat-informations">
-              <div class="row">
-                <div class="col-xs-12 col-md-4">
-                  <%= cl_image_tag cat.photo.path, width: 250, height: 200, crop: :fill, class: "cat-image" %>
-                </div>
-                <div class="all-info">
-                  <div class="col-xs-12 col-md-12">
-                    <div class="col-xs-12 col-md-6">
-                      <div class="text-center cat-name-and-desc">
-                        <div>
-                          <h3><%= cat.name%></h3>
-                          <p><%= cat.description%></p>
+        <% current_user.cats.each do |cat|%>
+          <%= link_to cat_path(cat) do %>
+              <div class="cat-informations">
+                <div class="row">
+                  <div class="col-xs-12 col-md-4">
+                    <% if cat.photo? %>
+                      <%= cl_image_tag cat.photo.path, width: 250, height: 200, crop: :fill, class: "cat-image" %>
+                    <% end %>
+                  </div>
+                  <div class="col-xs-12 col-md-8">
+                    <div class="all-info">
+                      <div class="row">
+                        <div class="col-xs-6 col-md-6">
+                          <div class="text-center cat-name-and-desc">
+                              <h3><%= cat.name%></h3>
+                              <p><%= cat.description%></p>
+                          </div>
                         </div>
-                      </div>
-                    </div>
-                    <div class="col-xs-12 col-md-6">
-                      <div class="details">
-                        <ul class: "information-list">
-                          <li><p>Race : <%= cat.race.capitalize %></p></li>
-                          <li><p>Age : <%= cat.age %></p></li>
-                          <li><p>Address : <%= cat.address %></p></li>
-                          <li><p>Price : <%= cat.price_per_day %></p></li>
-                        </ul>
-                      </div>
-                    </div>
-                    <div class="col-xs-12 col-md-12">
-                      <div class="current-information text-center">
-                        <ul class="list-inline">
-                          <li>
-                            <ul class="list-inline cat-rating">
-                              <li><i class="fa fa-star" aria-hidden="true"></i></li>
-                              <li><i class="fa fa-star" aria-hidden="true"></i></li>
-                              <li><i class="fa fa-star" aria-hidden="true"></i></li>
-                              <li><i class="fa fa-star" aria-hidden="true"></i></li>
-                              <li><i class="fa fa-star-half" aria-hidden="true"></i></li>
-                              <li><smal>82</smal></li>
+                        <div class="col-xs-6 col-md-6">
+                          <div class="details">
+                            <ul class: "information-list">
+                              <li><p>Race : <%= cat.race.capitalize %></p></li>
+                              <li><p>Age : <%= cat.age %></p></li>
+                              <li><p>Address : <%= cat.address %></p></li>
+                              <li><p>Price : <%= cat.price_per_day %></p></li>
                             </ul>
-                          </li>
-                          <li> <smal>see reviews</smal> </li>
-                        </ul>
+                          </div>
+                        </div>
+                        <div class="col-xs-12 col-md-12">
+
+                          <div class="current-information text-center">
+                            <ul class="list-inline">
+                              <li>
+                                <ul class="list-inline cat-rating">
+                                  <li><i class="fa fa-star" aria-hidden="true"></i></li>
+                                  <li><i class="fa fa-star" aria-hidden="true"></i></li>
+                                  <li><i class="fa fa-star" aria-hidden="true"></i></li>
+                                  <li><i class="fa fa-star" aria-hidden="true"></i></li>
+                                  <li><i class="fa fa-star-half" aria-hidden="true"></i></li>
+                                  <li><smal>82</smal></li>
+                                </ul>
+                              </li>
+                              <li> <smal>see reviews</smal> </li>
+                            </ul>
+                          </div>
+                        </div>
                       </div>
                     </div>
                   </div>
                 </div>
               </div>
-            </div>
-          </div>
+          <% end %>
         <% end %>
-      <% end %>
       </div>
       <div class="col-xs-12 col-md-3">
         <div class="right-card text-center">
@@ -72,7 +73,7 @@
           <div class="right-card-elem">
             <%= current_user.name %>
           <div class="right-card-elem"->
-            <%= link_to  class: "text-center" do %>
+            <%= link_to  user_path(current_user), class: "text-center" do %>
               View my profile
             <% end %>
           </div>
