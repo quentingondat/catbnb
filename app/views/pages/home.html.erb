@@ -1,4 +1,4 @@
-<div class="banner" style="background-image: linear-gradient(-225deg, rgba(0,101,168,0.6) 0%, rgba(0,36,61,0.6) 50%), url(<%=image_path "catbnb-banner.jpeg"%>);">
+<div class="banner" style="background-image: linear-gradient(-225deg, rgba(0,101,168,0.6) 0%, rgba(0,36,61,0.6) 50%), url(http://res.cloudinary.com/das218bbz/image/upload/v1489587060/catbnb-banner_qxendq.jpg);">
   <div class="banner-content">
     <h1>New buddies, right meow!</h1>
     <p>Discover and rent awesome cats all around the world.</p>
@@ -30,7 +30,11 @@
           <h2><%=cat.name%></h2>
           <p><%=cat.price_per_day%>€ per day!</p>
         </div>
-        <img class="card-user avatar" src="http://lorempixel.com/200/200/people/<%=i%>">
+        <% if cat.user.photo %>
+          <%= cl_image_tag cat.user.photo.path, height: 75, width: 75, crop: :fill, class: "card-user avatar" %>
+        <% else %>
+          <%= cl_image_tag "http://lorempixel.com/200/200/people/", class: "card-user avatar" %>
+        <% end %>
         <a class="card-link" href=<%=cat_path(cat)%> ></a>
       </div>
     </div>
