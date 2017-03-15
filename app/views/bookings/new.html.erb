@@ -16,13 +16,20 @@
           <h4>Your booking</h4>
         </div>
         <div class="booking text-center">
-          <p><strong>Cat's name : </strong></p>
-          <p><strong>Cat's address : </strong></p>
-          <p><strong>Rent from : </strong><strong>to</strong></p>
+        <%= simple_form_for [@booking.cat, @booking] do |f| %>
+        <%= f.hidden_field :start_at, value: @booking.start_at %>
+        <%= f.hidden_field :ends_at, value: @booking.ends_at %>
+        <%= f.hidden_field :price_per_day, value: @booking.price_per_day %>
+        <%= f.hidden_field :cat_id, value: @booking.cat_id %>
+          <p><strong>Cat's name : </strong><%=@booking.cat.name%></p>
+          <p><strong>Cat's address : </strong><%=@booking.cat.address%></p>
+          <p><strong>Rent from : </strong><%=@booking.start_at%><strong> to </strong><%=@booking.ends_at%></p>
           <div class="line"></div>
           <p><strong>Groom fees : 20$ </strong></p>
           <div class="line"></div>
           <p><strong>TOTAL : </strong></p>
+        <%= f.submit "Validate Booking", class: "btn btn-primary" %>
+        <% end %>
         </div>
       </div>
     </div>

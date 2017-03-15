@@ -3,18 +3,20 @@ class BookingsController < ApplicationController
   end
 
   def new
-    #@booking = Booking.new(params[:start_at], params[:ends_at], params[:id],
-      #params[:cat_id], params[:user_id], params[:price_per_day])
+    #@booking = Booking.new(start_at: params[:start_at], ends_at: params[:ends_at],
+      #cat_id: params[:cat_id])
+     @booking = Booking.new(start_at: DateTime.now, ends_at: DateTime.now + 3.days,
+      cat_id: params[:cat_id], price_per_day: params[:price_per_day])
   end
 
 
   def create
-    @cat = Cat.find(params[:cat_id])
+    #@cat = Cat.find(params[:cat_id])
     @booking = Booking.new(booking_params)
-    @booking.cat = @cat
     @booking.user = current_user
-    if booking.save
-      redirect_to booking_path(@booking)
+    #@booking.cat = @cat
+    if @booking.save
+      redirect_to :root
     else
       render :new
     end
@@ -26,6 +28,6 @@ class BookingsController < ApplicationController
   private
 
   def booking_params
-    params.require(:booking).permit(:start_at, :ends_at)
+    params.require(:booking).permit(:start_at, :ends_at, :cat_id, :price_per_day)
   end
 end
