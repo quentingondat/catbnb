@@ -4,8 +4,8 @@
   <div class="big-avatar">
     <% if current_user.photo? %>
       <%= cl_image_tag current_user.photo.path, :transformation=>[
-    {:width=>300, :height=>300, :gravity=>"face", :radius=>"max", :crop=>"crop"},
-    {:width=>150, :crop=>"scale"}
+    {:width=>300, :height=>300, :gravity=>"face", :radius=>"max", crop: :fill},
+    {width: 150, crop: :fill}
     ] %>
 
     <% end %>
