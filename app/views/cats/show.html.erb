@@ -1,6 +1,6 @@
 <% if @cat.photo? %>
 
-<div class="banner banner-show" style="background-image: url(<%=cl_image_path @cat.photo.path %>);">
+<div class="banner banner-show" style="background-image: url(<%= cl_image_path @cat.photo.path %>);">
 
 
 <% else %>
@@ -18,7 +18,7 @@
         <div class="col-xs-2 col-owner-card">
           <div class="owner-card text-center">
             <% if @cat.user.photo? %>
-              <img class="avatar-large" src=<%= image_path @cat.user.photo%> >
+              <%= cl_image_tag @cat.user.photo.path, class: "avatar-large"%>
             <% else %>
               <img class="avatar-large" src="http://lorempixel.com/200/200/people/<%=@cat.id%>">
             <% end %>
@@ -91,7 +91,7 @@
             <div class="row">
               <div class="col-xs-2">
                 <% if @cat.user.photo? %>
-                  <img class="avatar-large" src=<%= image_path @cat.user.photo%> >
+                  <%= cl_image_tag @cat.user.photo.path, class: "avatar-large"%>
                 <% else %>
                   <img class="avatar-large" src="http://lorempixel.com/200/200/people/<%=@cat.id%>">
                 <% end %>
@@ -121,14 +121,16 @@
     </div>
     <div class="col-xs-3">
       <div class="booking-title">
-        <h4>Book now!</h4>
+        <h4>Be <%= @cat.name%>'s BFF now!</h4>
       </div>
       <div class="booking">
-        <p>This is a form to book a cat blblblblbl</p>
-        <p>This is a form to book a cat blblblblbl</p>
-        <p>This is a form to book a cat blblblblbl</p>
-        <p>This is a form to book a cat blblblblbl</p>
-        <p>This is a form to book a cat blblblblbl</p>
+        <%= form_tag(new_cat_booking_path(@cat), method: :get) %>
+        <%= date_field_tag :start_at, nil, placeholder: 'Sart date'%>
+        <%= date_field_tag :ends_at, nil, placeholder: "End date"%>
+        <%= hidden_field_tag :user_id, current_user.id %>
+        <%= hidden_field_tag :cat_id, @cat.id %>
+        <%= hidden_field_tag :price_per_day, @cat.price_per_day %>
+        <%= submit_tag "Book #{@cat.name}", class: "btn btn-primary" %>
       </div>
     </div>
   </div>
