@@ -3,14 +3,16 @@ class CatsController < ApplicationController
   before_action :get_current_user, only: [:create, :update]
 
   def index
-    @cats = Cat.all
+    @cats = Cat.near(params[:address] || 'Paris')
+    @hash = Gmaps4rails.build_markers(@cats) do |cat, marker|
+      marker.lat cat.latitude
+      marker.lng cat.longitude
+      marker.infowindow render_to_string(partial: "/cats/map_box", locals: { cat: cat })
+    end
   end
 
   def show
-    @cat = Cat.find(params[:id])
-    @booking = Booking.new(booking_params)
-    @booking.cat = @cat
-    @booking.user = current_user
+    @cat_coordinates = { lat: @cat.latitude, lng: @cat.longitude }
   end
 
   def create

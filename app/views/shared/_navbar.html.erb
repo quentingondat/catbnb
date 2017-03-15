@@ -9,8 +9,8 @@
           <!-- Search form -->
     <div class="navbar-catbnb-item">
       <% unless  params[:controller] == "pages" && params[:action] == "home" %>
-        <form action="" class="navbar-catbnb-search">
-          <input type="text" class="navbar-catbnb-search-input" placeholder="Search for a cat">
+        <form action="/cats" method="get" class="navbar-catbnb-search">
+          <input type="text" name="address" class="navbar-catbnb-search-input" placeholder="Search for a cat">
           <button type="submit" class="navbar-catbnb-search-btn">
             <i class="fa fa-search"></i>
           </button>
@@ -44,7 +44,7 @@
           <% else %>
             <%= image_tag "logo.png", transformation: [{width: 250, height: 250, gravity: 'face', radius: 'max', crop: 'crop'}], class: "avatar dropdown-toggle", id: "navbar-catbnb-menu", data: { toggle: "dropdown" }%>
             <ul class="dropdown-menu dropdown-menu-right navbar-catbnb-dropdown-menu">
-              <li><%= link_to 'Log Out', 'users/sign_out', method: :delete %></li>
+              <li><%= link_to 'Log Out', destroy_user_session_path, method: :delete %></li>
             </ul>
           <% end %>
         </div>
