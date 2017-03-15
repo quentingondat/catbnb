@@ -33,6 +33,7 @@ gem 'coffee-rails'
 
 source 'https://rails-assets.org' do
   gem "rails-assets-underscore"
+  gem 'rails-assets-bootstrap-datepicker'
 end
 
 group :development, :test do

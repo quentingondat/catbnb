@@ -6,9 +6,6 @@
 <% else %>
 <div class="banner banner-show" style="background-image: url(<%="http://lorempixel.com/1200/600/cats/#{@cat.id}"%>);">
 <%end%>
-  <div class="container">
-
-  </div>
 </div>
 
 <div class="container">
@@ -124,17 +121,24 @@
         <h4>Be <%= @cat.name%>'s BFF now!</h4>
       </div>
       <div class="booking">
-        <%= form_tag(new_cat_booking_path(@cat), method: :get) %>
-        <%= date_field_tag :start_at, nil, placeholder: 'Sart date'%>
-        <%= date_field_tag :ends_at, nil, placeholder: "End date"%>
-        <%= hidden_field_tag :user_id, current_user.id %>
-        <%= hidden_field_tag :cat_id, @cat.id %>
-        <%= hidden_field_tag :price_per_day, @cat.price_per_day %>
-        <%= submit_tag "Book #{@cat.name}", class: "btn btn-primary" %>
+        <% if current_user.nil? %>
+          <p>Please <%= link_to 'log in', '/users/sign_in', class: "btn btn-primary" %> to book a cat!</p>
+        <% else %>
+
+          <%= form_tag(new_cat_booking_path(@cat), method: :get) %>
+
+          <div class="input-group input-daterange" id="booking_period">
+            <%= text_field_tag :start_at, nil, placeholder: 'Sart date', class: "form-control actual_range"%>
+            <br>
+            <%= text_field_tag :ends_at, nil, placeholder: "End date", class: "form-control actual_range"%>
+          </div>
+
+          <%= hidden_field_tag :user_id, current_user.id %>
+          <%= hidden_field_tag :cat_id, @cat.id %>
+          <%= hidden_field_tag :price_per_day, @cat.price_per_day %>
+          <%= submit_tag "Book #{@cat.name}", class: "btn btn-primary" %>
+        <% end %>
       </div>
     </div>
   </div>
 </div>
-
-
-
