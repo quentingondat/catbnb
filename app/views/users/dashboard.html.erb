@@ -1,64 +1,92 @@
 
-  <div class="container">
+  <div class="container container-dashboard">
     <div class="row">
-      <div class="text-center">
-        <h2>My Cats</h2>
-      </div>
 
       <div class="col-xs-12 col-md-9">
+        <div class="dashboard-tabs">
+          <div class="dashboard-tab active" id="mycats">
+            <h2>My Cats</h2>
+          </div>
+          <div class="dashboard-tab" id="mybookings">
+            <h2>My Bookings</h2>
+          </div>
+        </div>
+        <div class="dashboard-tab-content" id="mycats-content">
         <% current_user.cats.each do |cat|%>
-          <%= link_to cat_path(cat) do %>
+
               <div class="cat-informations">
-                <div class="row">
-                  <div class="col-xs-12 col-md-4">
-                    <% if cat.photo? %>
-                      <%= cl_image_tag cat.photo.path, width: 250, height: 200, crop: :fill, class: "cat-image" %>
+
+                  <div class="col-xs-12 col-md-3">
+                    <%= link_to cat_path(cat), class: "text-center" do %>
+                        <% if cat.photo? %>
+                          <%= cl_image_tag cat.photo.path, width: 150, height: 100, crop: :fill, class: "cat-image" %>
+                        <% end %>
                     <% end %>
                   </div>
-                  <div class="col-xs-12 col-md-8">
-                    <div class="all-info">
-                      <div class="row">
-                        <div class="col-xs-6 col-md-6">
-                          <div class="text-center cat-name-and-desc">
-                              <h3><%= cat.name%></h3>
-                              <p><%= cat.description%></p>
-                          </div>
-                        </div>
-                        <div class="col-xs-6 col-md-6">
-                          <div class="details">
-                            <ul class: "information-list">
-                              <li><p>Race : <%= cat.race.capitalize %></p></li>
-                              <li><p>Age : <%= cat.age %></p></li>
-                              <li><p>Address : <%= cat.address %></p></li>
-                              <li><p>Price : <%= cat.price_per_day %></p></li>
-                            </ul>
-                          </div>
-                        </div>
-                        <div class="col-xs-12 col-md-12">
 
-                          <div class="current-information text-center">
-                            <ul class="list-inline">
-                              <li>
-                                <ul class="list-inline cat-rating">
-                                  <li><i class="fa fa-star" aria-hidden="true"></i></li>
-                                  <li><i class="fa fa-star" aria-hidden="true"></i></li>
-                                  <li><i class="fa fa-star" aria-hidden="true"></i></li>
-                                  <li><i class="fa fa-star" aria-hidden="true"></i></li>
-                                  <li><i class="fa fa-star-half" aria-hidden="true"></i></li>
-                                  <li><smal>82</smal></li>
-                                </ul>
-                              </li>
-                              <li> <smal>see reviews</smal> </li>
+                  <div class="col-xs-12 col-md-9">
+                    <div class="dashboard-bookings">
+                      <div class="row">
+                        <% %>
+
+
+                            <ul class="dashboard-booking-list list-inline">
+                              <li><i class="fa fa-calendar"></i></li>
+                              <li>from: 25/03/2017</li>
+                              <li>to: 29/03/2017</li>
+                              <li><i class="fa fa-euro"></i></li>
+                              <li>total: 167€</li>
+                              <li><i class="fa fa-eye"></i></li>
+                              <li>see details</li>
+                              <li>view profile</li>
+                              <li><i class="fa fa-check"></i></li>
+                              <li><i class="fa fa-times"></i></li>
                             </ul>
-                          </div>
-                        </div>
+
+                            <ul class="dashboard-booking-list list-inline">
+                              <li><i class="fa fa-calendar"></i></li>
+                              <li>from: 25/03/2017</li>
+                              <li>to: 29/03/2017</li>
+                              <li><i class="fa fa-euro"></i></li>
+                              <li>total: 167€</li>
+                              <li><i class="fa fa-eye"></i></li>
+                              <li>see details</li>
+                              <li>view profile</li>
+                              <li><i class="fa fa-check"></i></li>
+                              <li><i class="fa fa-times"></i></li>
+                            </ul>
+
+
+                            <ul class="dashboard-booking-list list-inline">
+                              <li><i class="fa fa-calendar"></i></li>
+                              <li>from: 25/03/2017</li>
+                              <li>to: 29/03/2017</li>
+                              <li><i class="fa fa-euro"></i></li>
+                              <li>total: 167€</li>
+                              <li><i class="fa fa-eye"></i></li>
+                              <li>see details</li>
+                              <li>view profile</li>
+                              <li><i class="fa fa-check"></i></li>
+                              <li><i class="fa fa-times"></i></li>
+                            </ul>
+
+
                       </div>
                     </div>
                   </div>
-                </div>
+
               </div>
-          <% end %>
+
         <% end %>
+        </div>
+        <div class="dashboard-tab-content hidden" id="mybookings-content">
+        <% current_user.bookings.each do |booking| %>
+          <div class="mybooking">
+
+          </div>
+        <% end %>
+        <p>djhkdfjhbqkjbdf</p>
+        </div>
       </div>
       <div class="col-xs-12 col-md-3">
         <div class="right-card text-center">
