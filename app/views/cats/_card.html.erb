@@ -3,10 +3,7 @@
     <div class="card-index-image" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url('<%= cat_photo_path(cat.photo) %>');">
 
      <a class="card-link" href=<%=cat_path(cat)%> ></a>
-     <%= cl_image_tag cat_user_photo_path(cat.user.photo), transformation: [{width: 250, height: 250, gravity: 'face', radius: 'max', crop: 'crop'}], class: "avatar card-user" %>
-
-
-     <!-- <img class="card-user avatar" src="http://lorempixel.com/200/200/people/"> -->
+     <%= cl_image_tag cat_user_photo_path(cat.user.photo), transformation: [{width: 75, height: 75, gravity: 'face', radius: 'max', crop: :fill}], class: "avatar card-user" %>
     </div>
     <div class="card-index-text">
       <div class="card-index-text-row">
