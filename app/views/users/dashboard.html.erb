@@ -1,12 +1,90 @@
-<h1>Your Dashboard</h1>
 
-<div class="dashboard-tabs">
-  <a class="dashboard-tab active" href="#">
-    <h3>5</h3>
-    <p>Rented Cats</p>
-  </a>
-  <a class="dashboard-tab" href="#">
-    <h3>1</h3>
-    <p>My cats</p>
-  </a>
-</div>
+  <div class="container">
+    <div class="row">
+      <div class="text-center">
+        <h2>My Cats</h2>
+      </div>
+
+      <div class="col-xs-12 col-md-9">
+        <% current_user.cats.each do |cat|%>
+          <%= link_to cat_path(cat) do %>
+              <div class="cat-informations">
+                <div class="row">
+                  <div class="col-xs-12 col-md-4">
+                    <% if cat.photo? %>
+                      <%= cl_image_tag cat.photo.path, width: 250, height: 200, crop: :fill, class: "cat-image" %>
+                    <% end %>
+                  </div>
+                  <div class="col-xs-12 col-md-8">
+                    <div class="all-info">
+                      <div class="row">
+                        <div class="col-xs-6 col-md-6">
+                          <div class="text-center cat-name-and-desc">
+                              <h3><%= cat.name%></h3>
+                              <p><%= cat.description%></p>
+                          </div>
+                        </div>
+                        <div class="col-xs-6 col-md-6">
+                          <div class="details">
+                            <ul class: "information-list">
+                              <li><p>Race : <%= cat.race.capitalize %></p></li>
+                              <li><p>Age : <%= cat.age %></p></li>
+                              <li><p>Address : <%= cat.address %></p></li>
+                              <li><p>Price : <%= cat.price_per_day %></p></li>
+                            </ul>
+                          </div>
+                        </div>
+                        <div class="col-xs-12 col-md-12">
+
+                          <div class="current-information text-center">
+                            <ul class="list-inline">
+                              <li>
+                                <ul class="list-inline cat-rating">
+                                  <li><i class="fa fa-star" aria-hidden="true"></i></li>
+                                  <li><i class="fa fa-star" aria-hidden="true"></i></li>
+                                  <li><i class="fa fa-star" aria-hidden="true"></i></li>
+                                  <li><i class="fa fa-star" aria-hidden="true"></i></li>
+                                  <li><i class="fa fa-star-half" aria-hidden="true"></i></li>
+                                  <li><smal>82</smal></li>
+                                </ul>
+                              </li>
+                              <li> <smal>see reviews</smal> </li>
+                            </ul>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+          <% end %>
+        <% end %>
+      </div>
+      <div class="col-xs-12 col-md-3">
+        <div class="right-card text-center">
+          <div class="right-card-elem"->
+            <% if current_user.photo? %>
+            <%= cl_image_tag current_user.photo.path, :transformation=>[
+            {:width=>900, :height=>900, :gravity=>"face", :radius=>"max", :crop=>"crop"},
+            {:width=>150, :crop=>"scale"}
+            ] %>
+          <% end %>
+          </div>
+          <div class="right-card-elem">
+            <%= current_user.name %>
+          <div class="right-card-elem"->
+            <%= link_to  user_path(current_user), class: "text-center" do %>
+              View my profile
+            <% end %>
+          </div>
+          <div class="right-card-elem"->
+            <%= link_to new_cat_path class: "text-center" do %>
+              Create a new cat
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+

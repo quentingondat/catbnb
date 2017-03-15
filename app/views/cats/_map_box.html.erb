@@ -1,0 +1,10 @@
+<div class="owner-card">
+            <% if cat.user.photo? %>
+              <img class="avatar" src=<%= image_path cat.user.photo%> >
+            <% else %>
+              <img class="avatar" src="http://lorempixel.com/200/200/people/">
+            <% end %>
+            <h3><%= cat.name%></h3>
+            <h4><strong><%= cat.price_per_day%> € par jour !</strong></h4>
+            <p><%= cat.address%></p>
+</div>

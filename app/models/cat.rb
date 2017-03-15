@@ -8,4 +8,7 @@ class Cat < ApplicationRecord
   validates :price_per_day, presence: true
 
   has_attachment :photo
+
+  geocoded_by :address
+  after_validation :geocode, if: :address_changed?
 end
