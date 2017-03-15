@@ -18,6 +18,8 @@ gem 'autoprefixer-rails'
 
 gem 'devise'
 
+gem "geocoder"
+
 # Attachinary
 
 gem 'cloudinary', '1.1.7'
