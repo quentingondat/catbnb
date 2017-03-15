@@ -16,13 +16,16 @@ class BookingsController < ApplicationController
     @booking.user = current_user
     #@booking.cat = @cat
     if @booking.save
-      redirect_to :root
+      redirect_to congrats_path
     else
       render :new
     end
   end
 
   def destroy
+  end
+
+  def congrats
   end
 
   private
