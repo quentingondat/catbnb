@@ -1,26 +1,18 @@
 <div class="container-without-footer">
+<div class="container-fluid">
   <div class="row">
     <div class="col-xs-12 col-sm-7">
       <div class="wider-container card-container">
+
         <div class="row">
           <% @cats.each do |cat| %>
-            <div class="col-xs-12 col-sm-6">
-              <div class="card" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url('<%= cat_photo_path(cat.photo) %>');">
-                <div class="card-category"><%=cat.race%></div>
-                <div class="card-description">
-                  <h2><%=cat.name%></h2>
-                  <p><%=cat.price_per_day%>€ per day!</p>
-                </div>
-                <img class="card-user avatar" src="http://lorempixel.com/200/200/people/">
-                <a class="card-link" href="<%=cat_path(cat)%>" ></a>
-              </div>
-            </div>
+          <%= render 'card', cat: cat %>
           <%end%>
         </div>
       </div>
     </div>
-    <div class="col-xs-12 col-sm-5">
-      <div id="map" class="wider-container map-container">
+    <div class="col-xs-12 col-sm-5 nopadding">
+      <div id="map" class="wider-container">
         <% content_for(:after_js) do %>
           <%= javascript_tag do %>
             $(document).ready(function() {
@@ -40,5 +32,6 @@
         <% end %>
       </div>
     </div>
+  </div>
   </div>
 </div>
