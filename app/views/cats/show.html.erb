@@ -79,12 +79,31 @@
         </div>
       </div>
       <hr>
-<!--       <div class="row">
+      <div class="row">
         <div class="col-xs-10 col-xs-offset-2">
-          <h3>REVIEWS</h3>
+          <div class="reviews-div">
+            <h4><%=@cat.reviews.count%> reviews!</h4>
+            <% @reviews.each do |rev|%>
+            <div class="row">
+              <div class="col-xs-3">
+                <% if rev.user.photo? %>
+                  <%= cl_image_tag rev.user.photo.path, class: "avatar-large"%>
+                <% else %>
+                  <img class="avatar-large" src="http://lorempixel.com/200/200/people/<%=@cat.id%>">
+                <% end %>
+                <h4><%= rev.user.name%></h4>
+              </div>
+              <div class="col-xs-9">
+                <h4><%=rev.rating%>/5</h4>
+                <p><%= rev.content%></p>
+                <hr>
+              </div>
+            </div>
+            <% end%>
+          </div>
         </div>
       </div>
-      <hr> -->
+      <hr>
       <div class="row">
         <div class="col-xs-10 col-xs-offset-2">
           <div class="owner-card">
