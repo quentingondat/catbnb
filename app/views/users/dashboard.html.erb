@@ -55,15 +55,15 @@
                   <div class="col-xs-12 col-md-3">
                     <div class="dashboard-drop-down-left">
                       <div class="row">
-                      <% if cat.photo? %>
-                        <%= cl_image_tag cat.photo.path, width: 100, height: 100, crop: :fill, class: "cat-image" %>
-                      <% else %>
-                        <%= image_tag "cat-icon.png", width: 100, height: 100, crop: :fill, class: "cat-image" %>
+                      <%= link_to cat_path(cat) do %>
+                        <% if cat.photo? %>
+                          <%= cl_image_tag cat.photo.path, width: 100, height: 100, crop: :fill, class: "cat-image cat-image-lien" %>
+                        <% else %>
+                          <%= image_tag "cat-icon.png", width: 100, height: 100, crop: :fill, class: "cat-image cat-image-lien" %>
+                        <% end %>
                       <% end %>
-                      <h1 class="text-center"><%= cat.name %></h1>
                       </div>
                     </div>
-
                   </div>
                   <div class="col-xs-12 col-md-9">
                     <% cat.bookings.each do |booking| %>
@@ -109,7 +109,6 @@
           <% end %>
         </div>
         <div class="dashboard-tab-content hidden" id="mybookings-content">
-
           <% current_user.bookings.each do |booking|%>
             <div class="dashboard-cat-informations">
                 <div class="dashboard-cat-photo">
