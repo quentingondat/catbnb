@@ -1,6 +1,7 @@
 class Cat < ApplicationRecord
   belongs_to :user
   has_many :bookings
+  has_many :reviews, through: :bookings
   validates :name, presence: true
   validates :race, presence: true
   validates :age, presence: true

@@ -15,6 +15,7 @@ class CatsController < ApplicationController
     @cat = Cat.find(params[:id])
     @booking = Booking.new
     @cat_coordinates = { lat: @cat.latitude, lng: @cat.longitude }
+    @reviews = @cat.reviews.all
   end
 
   def create
