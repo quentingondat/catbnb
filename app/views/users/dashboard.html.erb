@@ -1,7 +1,6 @@
 
   <div class="container container-dashboard">
     <div class="row">
-
       <div class="col-xs-12 col-md-9">
         <div class="dashboard-tabs">
           <div class="dashboard-tab active" id="mycats">
@@ -11,81 +10,148 @@
             <h2>My Bookings</h2>
           </div>
         </div>
+
         <div class="dashboard-tab-content" id="mycats-content">
-        <% current_user.cats.each do |cat|%>
+          <% current_user.cats.each do |cat|%>
+            <div class="dashboard-all-cat-informations">
 
-              <div class="cat-informations">
-
-                  <div class="col-xs-12 col-md-3">
-                    <%= link_to cat_path(cat), class: "text-center" do %>
-                        <% if cat.photo? %>
-                          <%= cl_image_tag cat.photo.path, width: 150, height: 100, crop: :fill, class: "cat-image" %>
-                        <% end %>
+              <div class="dashboard-cat-informations" id="<%= cat.id %>">
+                <div class="dashboard-cat-photo">
+                  <% if cat.photo? %>
+                    <%= cl_image_tag cat.photo.path, transformation: [{width: 60, height: 60, gravity: 'face', radius: 'max', crop: 'fill'}], class: "cat-image" %>
+                    <% else %>
+                    <%= image_tag "cat-icon.png", width: 60, height: 60, crop: :fill, class: "cat-image" %>
+                  <% end %>
+                  <h1><%= cat.name %></h1>
+                </div>
+                <div class="dashboard-cat-rating">
+                  <i class="fa fa-star" aria-hidden="true"></i>
+                  <i class="fa fa-star" aria-hidden="true"></i>
+                  <i class="fa fa-star" aria-hidden="true"></i>
+                  <i class="fa fa-star-half" aria-hidden="true"></i>
+                  <small>82</small>
+                </div>
+                  <% x = 0 %>
+                  <% y = 0 %>
+                  <% z = 0 %>
+                  <% cat.bookings.each do |booking| %>
+                    <% if booking.accepted == nil %>
+                      <% x += 1 %>
+                    <% elsif booking.accepted == true %>
+                      <% y += 1 %>
+                    <% else %>
+                      <% z += 1 %>
                     <% end %>
-                  </div>
-
-                  <div class="col-xs-12 col-md-9">
-                    <div class="dashboard-bookings">
+                  <% end %>
+                <div class="pending-bookings">
+                  <p><%= x %> pending</p>
+                </div>
+                <div class="pending-bookings">
+                  <p><%= x + y + z %> booking(s)</p>
+                </div>
+              </div>
+              <div class="row">
+                <div class="dashboard-drop-down hidden" id="hidden-<%=cat.id%>">
+                  <div class="col-xs-12 col-md-3">
+                    <div class="dashboard-drop-down-left">
                       <div class="row">
-                        <% %>
-
-
-                            <ul class="dashboard-booking-list list-inline">
-                              <li><i class="fa fa-calendar"></i></li>
-                              <li>from: 25/03/2017</li>
-                              <li>to: 29/03/2017</li>
-                              <li><i class="fa fa-euro"></i></li>
-                              <li>total: 167€</li>
-                              <li><i class="fa fa-eye"></i></li>
-                              <li>see details</li>
-                              <li>view profile</li>
-                              <li><i class="fa fa-check"></i></li>
-                              <li><i class="fa fa-times"></i></li>
-                            </ul>
-
-                            <ul class="dashboard-booking-list list-inline">
-                              <li><i class="fa fa-calendar"></i></li>
-                              <li>from: 25/03/2017</li>
-                              <li>to: 29/03/2017</li>
-                              <li><i class="fa fa-euro"></i></li>
-                              <li>total: 167€</li>
-                              <li><i class="fa fa-eye"></i></li>
-                              <li>see details</li>
-                              <li>view profile</li>
-                              <li><i class="fa fa-check"></i></li>
-                              <li><i class="fa fa-times"></i></li>
-                            </ul>
-
-
-                            <ul class="dashboard-booking-list list-inline">
-                              <li><i class="fa fa-calendar"></i></li>
-                              <li>from: 25/03/2017</li>
-                              <li>to: 29/03/2017</li>
-                              <li><i class="fa fa-euro"></i></li>
-                              <li>total: 167€</li>
-                              <li><i class="fa fa-eye"></i></li>
-                              <li>see details</li>
-                              <li>view profile</li>
-                              <li><i class="fa fa-check"></i></li>
-                              <li><i class="fa fa-times"></i></li>
-                            </ul>
-
-
+                      <% if cat.photo? %>
+                        <%= cl_image_tag cat.photo.path, width: 100, height: 100, crop: :fill, class: "cat-image" %>
+                      <% else %>
+                        <%= image_tag "cat-icon.png", width: 100, height: 100, crop: :fill, class: "cat-image" %>
+                      <% end %>
+                      <h1 class="text-center"><%= cat.name %></h1>
                       </div>
                     </div>
+
                   </div>
-
+                  <div class="col-xs-12 col-md-9">
+                    <% cat.bookings.each do |booking| %>
+                      <ul class="dashboard-booking-list list-inline">
+                        <li>
+                        <% if booking.user.photo? %>
+                        <%= cl_image_tag booking.user.photo.path, width: 50, height: 50, crop: :fill, class: "cat-image" %></li>
+                        <% end %>
+                          <li><p class="text-center"><%=booking.user.name%></p></li>
+                          <li><p><div class="dashboard-cat-rating">
+                            <i class="fa fa-star" aria-hidden="true"></i>
+                            <i class="fa fa-star" aria-hidden="true"></i>
+                            <i class="fa fa-star" aria-hidden="true"></i>
+                            <i class="fa fa-star-half" aria-hidden="true"></i>
+                            <small>82</small>
+                          </div></p></li>
+                        <li><p>from : <%= booking.start_at %></p>
+                            <p>to : <%= booking.ends_at %></p>
+                        </li>
+                        <li><%= booking.price_per_day %><i class="fa fa-euro"></i></li>
+                        <li>
+                          <% if booking.accepted == nil %>
+                          <ul class="items-center">
+                            <li class="accept-or-decline-list"> <%= link_to accept_booking_path(booking), method: :patch do  %>
+                            <%= image_tag "002-check.png", width: 20, height: 20, crop: :fill, class: "accept-or-decline" %>
+                          <% end %></li>
+                            <li class="accept-or-decline-list"><%= link_to decline_booking_path(booking), method: :patch do  %>
+                            <%= image_tag "001-cancel.png", width: 20, height: 20, crop: :fill, class: "accept-or-decline" %>
+                          <% end %></li>
+                          </ul>
+                          <% elsif booking.accepted == true %>
+                            <button class="btn btn-success">Accepted</button>
+                          <% elsif booking.accepted == false %>
+                            <button class="btn btn-danger">Declined</button>
+                          <% end %>
+                        </li>
+                      </ul>
+                    <% end %>
+                  </div>
+                </div>
               </div>
-
-        <% end %>
+            </div>
+          <% end %>
         </div>
         <div class="dashboard-tab-content hidden" id="mybookings-content">
-        <% current_user.bookings.each do |booking| %>
-          <div class="mybooking">
 
-          </div>
-        <% end %>
-        <p>djhkdfjhbqkjbdf</p>
+          <% current_user.bookings.each do |booking|%>
+            <div class="dashboard-cat-informations">
+                <div class="dashboard-cat-photo">
+                  <% if booking.cat.photo? %>
+                    <%= cl_image_tag booking.cat.photo.path, transformation: [{width: 60, height: 60, gravity: 'face', radius: 'max', crop: 'fill'}], class: "cat-image" %>
+                    <% else %>
+                    <%= image_tag "cat-icon.png", width: 60, height: 60, crop: :fill, class: "cat-image" %>
+                  <% end %>
+                  <h1><%= booking.cat.name %></h1>
+                </div>
+                <div class="dashboard-cat-rating">
+                  <i class="fa fa-star" aria-hidden="true"></i>
+                  <i class="fa fa-star" aria-hidden="true"></i>
+                  <i class="fa fa-star" aria-hidden="true"></i>
+                  <i class="fa fa-star-half" aria-hidden="true"></i>
+                  <small>82</small>
+                </div>
+                <div class="dashboard-cat-photo">
+                  <ul>
+                    <li>from: <%= booking.start_at %></li>
+                    <li>to: <%= booking.ends_at %></li>
+                  </ul>
+                </div>
+                <div class="dashboard-bookings-infos">
+                  <p><%= booking.price_per_day %><i class="fa fa-euro"></i></p>
+                </div>
+                <div>
+                  <% if booking.accepted == nil %>
+                    <button class="btn btn-warning">Pending</button>
+                    <% elsif booking.accepted == true %>
+                      <button class="btn btn-success">Accepted</button>
+                    <% elsif booking.accepted == false %>
+                      <button class="btn btn-danger">Decline</button>
+                  <% end %>
+                </div>
+                <div>
+                  <%= link_to cat_booking_path(booking.cat, booking), method: :delete, data: { confirm: 'Are you sure?' } do %>
+                    <button class="btn-primary">Cancel booking</button>
+                  <% end %>
+              </div>
+            </div>
+          <% end %>
         </div>
       </div>
       <div class="col-xs-12 col-md-3">
