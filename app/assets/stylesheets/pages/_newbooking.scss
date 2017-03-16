@@ -1,4 +1,70 @@
-.booking-title {
-  margin-top: 10px;
+.booking-confirmation-title {
+  margin-top: 0px;
+  padding: 10px 20px;
+  background-color: #2d2d2d;
+  width: 100%;
+  color: white;
+  margin-bottom: 30px;
 
+}
+
+#message {
+  padding-left: 15px;
+  padding-top: 15px;
+  margin-left: 50px;
+}
+
+#content {
+  margin-top: 50px;
+}
+
+.recap-box {
+  background-color: white;
+  border: 1px solid #DBCFCF;
+  padding: 0px;
+  border-radius: 4px;
+}
+
+.card-recap-image {
+  flex: 1;
+  background-size: cover !important;
+  position: relative;
+  height: 120px;
+}
+
+.confirmation-info {
+  padding-left: 30px;
+  color: #76767e;
+  margin-bottom: 30px;
+}
+
+.confirmation-start-date {
+  color: #76767e;
+  padding-left: 30px;
+}
+
+.confirmation-end-date {
+  color: #76767e;
+  padding-left: 20px;
+}
+
+#chevron {
+ color: #C8C8D5;
+ font-size: 40px;
+}
+
+.confirmation-date {
+  margin: 30px auto;
+}
+
+.price-details {
+  color: #76767e;
+  padding-left: 30px;
+  margin: 30px auto;
+}
+
+.total {
+  color: #76767e;
+  padding-left: 30px;
+  margin: 30px auto;
 }
