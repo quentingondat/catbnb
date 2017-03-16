@@ -122,10 +122,10 @@
       </div>
       <div class="booking">
         <% if current_user.nil? %>
-          <p>Please <%= link_to 'log in', '/users/sign_in', class: "btn btn-primary" %> to book a cat!</p>
+          <p>Please <%= link_to 'sign up', '/users/sign_up', class: "btn btn-primary" %> to book a cat!</p>
         <% else %>
 
-          <%= form_tag(new_cat_booking_path(@cat), method: :get) %>
+          <%= form_tag(new_cat_booking_path(@cat), method: :get, class: "booking_form") %>
 
           <div class="input-group input-daterange" id="booking_period">
             <%= text_field_tag :start_at, nil, placeholder: 'Sart date', class: "form-control actual_range"%>
