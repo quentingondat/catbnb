@@ -10,7 +10,7 @@
 
 <div class="container">
   <div class="row">
-    <div class="col-xs-8">
+    <div class="col-xs-12 col-md-8">
       <div class="row row-cat-char">
         <div class="col-xs-2 col-owner-card">
           <div class="owner-card text-center">
@@ -24,10 +24,10 @@
         </div>
         <div class="col-xs-10 col-cat-name-adress-char">
           <div class="col-xs-12 cat-pres">
-            <div class="col-xs-3">
+            <div class="col-xs-6">
               <h1><%= @cat.name %></h1>
             </div>
-            <div class="col-xs-6 col-xs-offset-3 cat-address">
+            <div class="col-xs-6 cat-address">
               <small><%= @cat.address %></small>
             </div>
           </div>
@@ -60,7 +60,12 @@
                   <small>82</small>
                 </div>
               </div>
-              <div class="col-xs-3"></div>
+              <div class="col-xs-3">
+                <div class="cat-age">
+                  <h3><%=@cat.price_per_day%><span style="font-size:20px;">€</span></h3>
+                  <p>per day</p>
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -116,27 +121,26 @@
         <% end %>
       </div>
     </div>
-    <div class="col-xs-3">
+    <div class="col-xs-12 col-md-3">
       <div class="booking-title">
-        <h4>Be <%= @cat.name%>'s BFF now!</h4>
+        <h4>Book <%= @cat.name%>!</h4>
       </div>
       <div class="booking">
         <% if current_user.nil? %>
           <p>Please <%= link_to 'sign up', '/users/sign_up', class: "btn btn-primary" %> to book a cat!</p>
         <% else %>
+            <%= form_tag(new_cat_booking_path(@cat), method: :get, class: "booking_form text-center") %>
 
-          <%= form_tag(new_cat_booking_path(@cat), method: :get, class: "booking_form") %>
+            <div class="input-group input-daterange" id="booking_period" >
+              <%= text_field_tag :start_at, nil, placeholder: 'Sart date', class: "form-control actual_range" %>
+              <br>
+              <%= text_field_tag :ends_at, nil, placeholder: "End date", class: "form-control actual_range"%>
+            </div>
 
-          <div class="input-group input-daterange" id="booking_period">
-            <%= text_field_tag :start_at, nil, placeholder: 'Sart date', class: "form-control actual_range"%>
-            <br>
-            <%= text_field_tag :ends_at, nil, placeholder: "End date", class: "form-control actual_range"%>
-          </div>
-
-          <%= hidden_field_tag :user_id, current_user.id %>
-          <%= hidden_field_tag :cat_id, @cat.id %>
-          <%= hidden_field_tag :price_per_day, @cat.price_per_day %>
-          <%= submit_tag "Book #{@cat.name}", class: "btn btn-primary" %>
+            <%= hidden_field_tag :user_id, current_user.id %>
+            <%= hidden_field_tag :cat_id, @cat.id %>
+            <%= hidden_field_tag :price_per_day, @cat.price_per_day %>
+            <%= submit_tag "Book #{@cat.name}", class: "btn btn-primary" %>
         <% end %>
       </div>
     </div>

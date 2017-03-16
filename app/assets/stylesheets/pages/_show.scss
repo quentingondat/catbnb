@@ -94,9 +94,19 @@
   width: 100%;
 }
 
-.booking_form input {
+.booking_form {
+  input {
   margin: 10px;
+  }
+  .input-daterange {
+    width: auto;
+    margin: auto;
+  }
+  .actual_range {
+    width: auto;
+  }
 }
+
 
 hr {
   margin: 10px 0px;
