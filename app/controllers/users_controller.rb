@@ -19,6 +19,7 @@ class UsersController < ApplicationController
   end
 
   def dashboard
+
     #@my_offers = current_user.offers
     #bookings
     #bookings
