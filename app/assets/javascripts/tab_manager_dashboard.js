@@ -2,7 +2,6 @@
 $(document).ready(function() {
   $(".dashboard-tab").on('click', function() {
     // Display the ASCII code of the key pressed
-    console.log("blabkabkakbk");
     $(".active").removeClass('active')
     $(this).addClass('active')
     if ($("#mycats").hasClass('active')) {
@@ -12,5 +11,14 @@ $(document).ready(function() {
       $("#mycats-content").addClass('hidden')
       $("#mybookings-content").removeClass('hidden')
     }
+  });
+});
+
+$(document).ready(function() {
+  $(".dashboard-cat-informations").on('click', function() {
+
+    var cat_id = $(this).attr('id');
+    console.log(cat_id);
+    $("#hidden-"+cat_id).toggleClass('hidden');
   });
 });
