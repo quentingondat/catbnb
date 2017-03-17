@@ -40,10 +40,31 @@
   <% end %>
       </div>
     </div>
-    <div class="col-xs-4 col-xs-offset-1">
-      <h2>
+    <div class="col-xs-4 col-xs-offset-2">
+      <h2>Reviews</h2>
 
-      </h2>
+      <div id="reviews">
+        <% @reviews.each do |rev|%>
+        <div class="row">
+          <div class="col-xs-3">
+            <% if rev.user.photo? %>
+              <%= cl_image_tag rev.user.photo.path, class: "avatar-large"%>
+            <% else %>
+              <img class="avatar-large" src="http://lorempixel.com/200/200/people/<%=@cat.id%>">
+            <% end %>
+            <h4><%= rev.user.name%></h4>
+          </div>
+          <div class="col-xs-9">
+            <h4><%=rev.rating%>/5</h4>
+            <p><%= rev.content%></p>
+            <hr>
+          </div>
+        </div>
+        <% end %>
+      <div class="line"></div>
+      <div class="profile-form-review">
+        <%= render 'reviews/form', booking: @user_past_booking, review: @review%>
+      </div>
     </div>
   </div>
 </div>
