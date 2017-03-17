@@ -51,14 +51,7 @@
                 </div>
               </div>
               <div class="col-xs-3">
-                <div class="cat-rating">
-                  <i class="fa fa-star" aria-hidden="true"></i>
-                  <i class="fa fa-star" aria-hidden="true"></i>
-                  <i class="fa fa-star" aria-hidden="true"></i>
-                  <i class="fa fa-star" aria-hidden="true"></i>
-                  <i class="fa fa-star-half" aria-hidden="true"></i>
-                  <small>82</small>
-                </div>
+                <%= render 'rating', cat: @cat, count: 0 %>
               </div>
               <div class="col-xs-3">
                 <div class="cat-age">
@@ -83,20 +76,26 @@
         <div class="col-xs-10 col-xs-offset-2">
           <div class="reviews-div">
             <h4>
-              <%=@cat.reviews.count%> <%= pluralize @cat.reviews.size, "review" %>!
+              <%= pluralize @cat.reviews.size, "review" %>!
               </h4>
             <% @reviews.each do |rev|%>
             <div class="row">
-              <div class="col-xs-3">
+              <div class="col-xs-3 text-center">
                 <% if rev.user.photo? %>
-                  <%= cl_image_tag rev.user.photo.path, class: "avatar-large"%>
+                  <%= link_to user_path rev.user do %>
+                    <%= cl_image_tag rev.user.photo.path, class: "avatar-large"%>
+                  <% end %>
                 <% else %>
                   <img class="avatar-large" src="http://lorempixel.com/200/200/people/<%=@cat.id%>">
                 <% end %>
-                <h4><%= rev.user.name%></h4>
+                <h5><%= rev.user.name%></h5>
               </div>
               <div class="col-xs-9">
-                <h4><%=rev.rating%>/5</h4>
+                <div class="cat-rating">
+                <% rev.rating.round.times do %>
+                  <i class="fa fa-star" aria-hidden="true"></i>
+                <% end %>
+                </div>
                 <p><%= rev.content%></p>
                 <hr>
               </div>
@@ -144,7 +143,7 @@
     </div>
     <div class="col-xs-12 col-md-3">
       <div class="booking-title">
-        <% if @current_user_past_booking %>
+        <% if @current_user_review_needed %>
           <h4>Review <%= @cat.name%>!</h4>
         <% else %>
           <h4>Book <%= @cat.name%>!</h4>
@@ -155,7 +154,9 @@
           <p>Please <%= link_to 'sign up', '/users/sign_up', class: "btn btn-primary" %> to book a cat!</p>
         <% else %>
             <% if @current_user_review_needed %>
-              <%= render 'reviews/form', booking: @current_user_past_booking, review: @review%>
+              <div class="cat-show-review-form">
+                <%= render 'reviews/form', booking: @current_user_past_booking, review: @review%>
+              </div>
             <% else %>
               <%= form_tag(new_cat_booking_path(@cat), method: :get, class: "booking_form text-center") %>
 
