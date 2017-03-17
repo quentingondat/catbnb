@@ -44,7 +44,7 @@
                     <% end %>
                   <% end %>
                 <div class="pending-bookings">
-                  <p><%= x %> pending</p>
+                  <p><%= x %> pending...</p>
                 </div>
                 <div class="pending-bookings">
                   <p><%= x + y + z %> booking(s)</p>
@@ -98,9 +98,9 @@
                             <% end %></li>
                             </ul>
                             <% elsif booking.accepted == true %>
-                              <button class="btn btn-success fixe-button-widht">Accepted</button>
+                              <div class="accepted-button-dash fixe-button-widht text-center"><p>Accepted</p></div>
                             <% elsif booking.accepted == false %>
-                              <button class="btn btn-danger fixe-button-widht">Declined</button>
+                              <div class="declined-button-dash fixe-button-widht text-center"><p>Declined</p></div>
                             <% end %>
                           <% elsif booking.ends_at < Date.today %>
                             <%= link_to user_path(booking.user) do %>
@@ -118,7 +118,7 @@
         </div>
         <div class="dashboard-tab-content hidden" id="mybookings-content">
           <% current_user.bookings.each do |booking|%>
-            <div class="dashboard-cat-informations">
+            <div class="dashboard-booking-informations">
                 <div class="dashboard-cat-photo fixe-button-widht">
                   <%= link_to cat_path(booking.cat) do %>
                     <% if booking.cat.photo? %>
@@ -136,33 +136,33 @@
                   <i class="fa fa-star-half" aria-hidden="true"></i>
                   <small>82</small>
                 </div>
-                <div class="dashboard-cat-photo">
+                <div class="dashboard-cat-date">
                   <ul>
                     <li>from: <%= booking.start_at %></li>
                     <li>to: <%= booking.ends_at %></li>
                   </ul>
                 </div>
-                <div class="dashboard-bookings-infos fixe-button-widht">
+                <div class="dashboard-bookings-price fixe-button-widht text-center">
                   <p><%= booking.price_per_day %><i class="fa fa-euro"></i></p>
                 </div>
                 <div>
                        <% if booking.accepted == nil %>
-                      <button class="btn btn-warning fixe-button-widht">Pending</button>
+                        <div class="pending-button-dash fixe-button-widht text-center"><p>Pending...</p></div>
                       <% elsif booking.accepted == true %>
-                        <button class="btn btn-success fixe-button-widht">Accepted</button>
+                        <div class="accepted-button-dash fixe-button-widht text-center"><p>Accepted</p></div>
                       <% elsif booking.accepted == false %>
-                        <button class="btn btn-danger fixe-button-widht">Decline</button>
+                        <div class="declined-button-dash fixe-button-widht text-center"><p>Declined</p></div>
                     <% end %>
 
                 </div>
                 <div>
                   <% if booking.start_at > Date.today %>
                     <%= link_to booking_path(booking), method: :delete, data: { confirm: 'Are you sure?' } do %>
-                      <p class="fixe-button-widht text-center">Cancel booking</p>
+                      <div class="cancel-button-dash fixe-button-widht text-center"><p>Cancel</p></div>
                     <% end %>
                  <% elsif booking.ends_at < Date.today %>
                     <%= link_to cat_path(booking.cat) do %>
-                      <p class="fixe-button-widht text-center">Add review</p>
+                      <div class="cancel-button-dash fixe-button-widht text-center"><p>Add review</p></div>
                     <% end %>
                   <% end %>
               </div>
@@ -181,15 +181,15 @@
           <% end %>
           </div>
           <div class="right-card-elem">
-            <%= current_user.name %>
+            <h3>  <%= current_user.name %></h3>
           <div class="right-card-elem"->
             <%= link_to  user_path(current_user), class: "text-center" do %>
-              View my profile
+              <p>  My profile</p>
             <% end %>
           </div>
           <div class="right-card-elem"->
             <%= link_to new_cat_path class: "text-center" do %>
-              Create a new cat
+              <p> New cat </p>
             <% end %>
           </div>
         </div>
