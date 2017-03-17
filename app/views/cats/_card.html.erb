@@ -10,7 +10,7 @@
         <div class="card-index-text-price">
           <strong><%=cat.price_per_day%> €</strong>
         </div>
-        <%= render 'rating', cat: cat, count: 0%>
+        <%= render 'rating', cat: cat, count: 0, reviews: reviews%>
       </div>
       <div class="card-index-text-row">
         <h5><%=cat.name%> - <%=cat.race%></h5>

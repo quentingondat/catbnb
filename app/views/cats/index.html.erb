@@ -5,7 +5,14 @@
       <div class="wider-container card-container">
         <div class="row">
           <% @cats.each do |cat| %>
-          <%= render 'card', cat: cat %>
+            <%reviews = []%>
+            <%cat.bookings.each do |bk|%>
+              <%unless bk.reviews.find{ |rv| rv.user != cat.user }.nil?%>
+                <%rev = bk.reviews.find{ |rv| rv.user != cat.user }%>
+                <%reviews << rev%>
+              <%end%>
+          <%end%>
+          <%= render 'card', cat: cat, reviews: reviews %>
           <%end%>
         </div>
       </div>
