@@ -7,9 +7,8 @@ class CatsController < ApplicationController
     session[:booking_end_at] = params[:end_at] if params[:end_at].present?
     session[:address] = params[:address] if params[:address].present?
     @cats = Cat.near(params[:address] || 'Paris')
-    @cats = @cats.where("start_at <= ?", params[:start_at].to_date) if !params[:start_at].nil?
-    @cats = @cats.where("end_at >= ?", params[:end_at].to_date) if !params[:end_at].nil?
-    puts params[:start_at].to_date
+    @cats = @cats.where("start_at <= ?", params[:start_at].to_date) if params[:start_at].present?
+    @cats = @cats.where("end_at >= ?", params[:end_at].to_date) if params[:end_at].present?
     @hash = Gmaps4rails.build_markers(@cats) do |cat, marker|
       marker.lat cat.latitude
       marker.lng cat.longitude
