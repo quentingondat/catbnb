@@ -9,7 +9,6 @@ class CatsController < ApplicationController
     @cats = Cat.near(params[:address] || 'Paris')
     @cats = @cats.where("start_at <= ?", params[:start_at].to_date) if params[:start_at].present?
     @cats = @cats.where("end_at >= ?", params[:end_at].to_date) if params[:end_at].present?
-    puts params[:start_at].to_date
     @hash = Gmaps4rails.build_markers(@cats) do |cat, marker|
       marker.lat cat.latitude
       marker.lng cat.longitude
