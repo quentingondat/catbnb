@@ -150,18 +150,26 @@
                     <%= link_to booking_path(booking), method: :delete, data: { confirm: 'Are you sure?' } do %>
                       <div class="cancel-button-dash fixe-button-widht text-center"><p>Cancel</p></div>
                     <% end %>
-                 <% elsif booking.ends_at < Date.today %>
-                  <% if booking.reviews.find{|e| e.user == current_user} %>
-                    <%= link_to cat_path(booking.cat) do %>
-                      <div class="cancel-button-dash fixe-button-widht text-center"><p>Add review</p></div>
-                    <% end %>
-                    <% else %>
-                      <div class="allgood-button-dash fixe-button-widht text-center"><p>All Good</p></div>
+                  <% elsif booking.ends_at < Date.today %>
+                    <% if booking.reviews.find{|e| e.user == current_user} %>
+                      <%= link_to cat_path(booking.cat) do %>
+                        <div class="cancel-button-dash fixe-button-widht text-center"><p>Add review</p></div>
                       <% end %>
+                    <% else %>
+                      <% if booking.reviews.find{|e| e.user == current_user} %>
+                        <%= link_to cat_path(booking.cat) do %>
+                          <div class="allgood-button-dash fixe-button-widht text-center"><p>All Good</p></div>
+                        <% end %>
+                        <% else %>
+                          <div class="allgood-button-dash fixe-button-widht text-center"><p>All Good</p></div>
+                      <% end %>
+                    <% end %>
+                  <% else %>
+                    <div class="cancel-button-dash fixe-button-widht text-center"><p>Enjoy</p></div>
                   <% end %>
               </div>
             </div>
-          <% end %>
+            <% end %>
         </div>
       </div>
       <div class="col-xs-12 col-md-3">
