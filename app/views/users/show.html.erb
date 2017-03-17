@@ -1,4 +1,4 @@
-<div class="wrapper text-center container-with-footer">
+<div class="wrapper text-center container-spread">
 
   <% if user_signed_in? && current_user.id == @user.id%>
     <h1 class="no-top-margin">My profile</h1>
@@ -63,7 +63,9 @@
         <% end %>
       <div class="line"></div>
       <div class="profile-form-review">
+        <% if @user_review_needed %>
         <%= render 'reviews/form', booking: @user_past_booking, review: @review%>
+        <% end %>
       </div>
     </div>
   </div>

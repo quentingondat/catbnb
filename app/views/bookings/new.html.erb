@@ -49,9 +49,9 @@
           <%end%>
 
           <% if current_user.photo? %>
-            <%= cl_image_tag current_user.photo.path, class: "avatar-large"%>
+            <%= cl_image_tag current_user.photo.path, class: "avatar"%>
           <% else %>
-            <img class="avatar-large" src="http://lorempixel.com/200/200/people/<%=@booking.cat_id%>">
+            <img class="avatar" src="http://lorempixel.com/200/200/people/<%=@booking.cat_id%>">
           <% end %>
         </div>
 
