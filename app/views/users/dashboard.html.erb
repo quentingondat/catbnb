@@ -24,11 +24,7 @@
                   <h1><%= cat.name %></h1>
                 </div>
                 <div class="dashboard-cat-rating">
-                  <i class="fa fa-star" aria-hidden="true"></i>
-                  <i class="fa fa-star" aria-hidden="true"></i>
-                  <i class="fa fa-star" aria-hidden="true"></i>
-                  <i class="fa fa-star-half" aria-hidden="true"></i>
-                  <small>82</small>
+                  <%= render 'cats/rating', cat: cat, count: 0 %>
                 </div>
                   <% x = 0 %>
                   <% y = 0 %>
@@ -73,14 +69,9 @@
                           <%= cl_image_tag booking.user.photo.path, width: 50, height: 50, crop: :fill, class: "cat-image" %></li>
                           <% end %>
                         <% end %>
+
                           <li><p class="text-center"><%=booking.user.name%></p></li>
-                          <li><p><div class="dashboard-cat-rating">
-                            <i class="fa fa-star" aria-hidden="true"></i>
-                            <i class="fa fa-star" aria-hidden="true"></i>
-                            <i class="fa fa-star" aria-hidden="true"></i>
-                            <i class="fa fa-star-half" aria-hidden="true"></i>
-                            <small>82</small>
-                          </div></p></li>
+                          <li><p><%= render 'users/rating', user: booking.user, count: 0 %></p></li>
                         <li><p>from : <%= booking.start_at %></p>
                             <p>to : <%= booking.ends_at %></p>
                         </li>
@@ -90,10 +81,10 @@
                             <% if booking.accepted == nil %>
                             <ul class="items-center">
                               <li class="accept-or-decline-list"> <%= link_to accept_booking_path(booking), method: :patch do  %>
-                              <%= image_tag "002-check.png", width: 20, height: 20, crop: :fill, class: "accept-or-decline" %>
+                              <i class="fa fa-check"></i>
                             <% end %></li>
                               <li class="accept-or-decline-list"><%= link_to decline_booking_path(booking), method: :patch do  %>
-                              <%= image_tag "001-cancel.png", width: 20, height: 20, crop: :fill, class: "accept-or-decline" %>
+                              <i class="fa fa-times"></i>
                             <% end %></li>
                             </ul>
                             <% elsif booking.accepted == true %>
@@ -102,8 +93,12 @@
                               <div class="declined-button-dash fixe-button-widht text-center"><p>Declined</p></div>
                             <% end %>
                           <% elsif booking.ends_at < Date.today %>
+                            <% if booking.reviews.find{|e| e.user == current_user} %>
                             <%= link_to user_path(booking.user) do %>
                               <button class="btn btn-primary fixe-button-widht">Add review</button>
+                            <% end %>
+                            <% else %>
+                            <div class="allgood-button-dash fixe-button-widht text-center"><p>All Good</p></div>
                             <% end %>
                           <% end %>
                         </li>
@@ -129,11 +124,7 @@
                   <h1 class="fixe-button-widht"><%= booking.cat.name %></h1>
                 </div>
                 <div class="dashboard-cat-rating fixe-button-widht">
-                  <i class="fa fa-star" aria-hidden="true"></i>
-                  <i class="fa fa-star" aria-hidden="true"></i>
-                  <i class="fa fa-star" aria-hidden="true"></i>
-                  <i class="fa fa-star-half" aria-hidden="true"></i>
-                  <small>82</small>
+                  <%= render 'cats/rating', cat: booking.cat, count: 0 %>
                 </div>
                 <div class="dashboard-cat-date">
                   <ul>
@@ -160,9 +151,13 @@
                       <div class="cancel-button-dash fixe-button-widht text-center"><p>Cancel</p></div>
                     <% end %>
                  <% elsif booking.ends_at < Date.today %>
+                  <% if booking.reviews.find{|e| e.user == current_user} %>
                     <%= link_to cat_path(booking.cat) do %>
                       <div class="cancel-button-dash fixe-button-widht text-center"><p>Add review</p></div>
                     <% end %>
+                    <% else %>
+                      <div class="allgood-button-dash fixe-button-widht text-center"><p>All Good</p></div>
+                      <% end %>
                   <% end %>
               </div>
             </div>
