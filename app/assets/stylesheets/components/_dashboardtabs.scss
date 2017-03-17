@@ -126,6 +126,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+  width:100px;
   img {
     width: 50px;
     height: 50px;
@@ -171,5 +172,9 @@
 }
 .dashboard-cat-date {
   padding-top: 13px;
+}
+.allgood-button-dash {
+  color: black;
+  padding: 2px;
 }
 
