@@ -15,9 +15,13 @@
         <div class="col-xs-2 col-owner-card">
           <div class="owner-card text-center">
             <% if @cat.user.photo? %>
-              <%= cl_image_tag @cat.user.photo.path, class: "avatar-large"%>
+              <%= link_to user_path(@cat.user_id) do %>
+                <%= cl_image_tag @cat.user.photo.path, class: "avatar-large"%>
+              <%end%>
             <% else %>
-              <img class="avatar-large" src="http://lorempixel.com/200/200/people/<%=@cat.id%>">
+              <%= link_to user_path(@cat.user_id) do %>
+                <img class="avatar-large" src="http://lorempixel.com/200/200/people/<%=@cat.id%>">
+              <%end%>
             <% end %>
             <p><%= @cat.user.name%></p>
           </div>
