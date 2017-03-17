@@ -55,7 +55,11 @@
             <h4><%= rev.user.name%></h4>
           </div>
           <div class="col-xs-9">
-            <h4><%=rev.rating%>/5</h4>
+            <div class="cat-rating">
+              <% rev.rating.round.times do %>
+                <i class="fa fa-star" aria-hidden="true"></i>
+              <% end %>
+            </div>
             <p><%= rev.content%></p>
             <hr>
           </div>
