@@ -2,10 +2,15 @@
   <div class="banner-content">
     <h1>New buddies, right meow!</h1>
     <p>Discover and rent awesome cats all around the world.</p>
-    <form class="form-inline" method="get" action="/cats">
-      <input type="text" class="form-control input-lg" name="address" placeholder="Region / City / Address">
-      <input type="submit" class="btn btn-primary btn-lg" value="Search">
-    </form>
+
+    <%= form_tag '/cats', method: :get, class: "form-inline" do  %>
+      <%= text_field_tag 'address', nil, placeholder: "Region / City / Address", class: "form-control input-lg" %>
+      <div class="input-daterange" id="booking_period" style="display:inline;">
+        <%= text_field_tag 'start_at', nil, placeholder: 'Start date', class: "form-control input-lg actual_range" %>
+        <%= text_field_tag 'end_at', nil, placeholder: 'End date', class: "form-control input-lg actual_range" %>
+        <%= submit_tag "Search", class: "btn btn-lg btn-primary" %>
+      </div>
+    <% end %>
   </div>
 </div>
 

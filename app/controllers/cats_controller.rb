@@ -4,6 +4,8 @@ class CatsController < ApplicationController
 
   def index
     @cats = Cat.near(params[:address] || 'Paris')
+    @cats = @cats.where("start_at >= ?", params[:start_at].to_date) if params[:start_at].present?
+    @cats = @cats.where("end_at <= ?", params[:end_at].to_date) if params[:end_at].present?
     @hash = Gmaps4rails.build_markers(@cats) do |cat, marker|
       marker.lat cat.latitude
       marker.lng cat.longitude
@@ -46,7 +48,7 @@ class CatsController < ApplicationController
   private
 
   def user_params
-    params.require(:cat).permit(:name, :race, :age, :address, :price_per_day, :description, :cage, :litter, :cat_tree, :toys, :bowl, :outdoor, :belly_rubs, :photo)
+    params.require(:cat).permit(:name, :race, :age, :address, :price_per_day, :description, :cage, :litter, :cat_tree, :toys, :bowl, :outdoor, :belly_rubs, :start_at, :end_at, :photo)
   end
 
   def set_cat
