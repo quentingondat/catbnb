@@ -6,8 +6,8 @@ class UsersController < ApplicationController
     @user.bookings.each do |bk|
       unless bk.reviews.find { |rv| rv.user != @user }.nil?
         rev = bk.reviews.find { |rv| rv.user != @user }
+        @reviews << rev
       end
-      @reviews << rev
     end
     if !current_user.nil?
       @user_past_booking = @user.bookings.find{ |e| (e.cat.user == current_user) && (e.ends_at < DateTime.now)}
