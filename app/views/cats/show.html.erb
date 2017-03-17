@@ -79,12 +79,33 @@
         </div>
       </div>
       <hr>
-<!--       <div class="row">
+      <div class="row">
         <div class="col-xs-10 col-xs-offset-2">
-          <h3>REVIEWS</h3>
+          <div class="reviews-div">
+            <h4>
+              <%=@cat.reviews.count%> <%= pluralize @cat.reviews.size, "review" %>!
+              </h4>
+            <% @reviews.each do |rev|%>
+            <div class="row">
+              <div class="col-xs-3">
+                <% if rev.user.photo? %>
+                  <%= cl_image_tag rev.user.photo.path, class: "avatar-large"%>
+                <% else %>
+                  <img class="avatar-large" src="http://lorempixel.com/200/200/people/<%=@cat.id%>">
+                <% end %>
+                <h4><%= rev.user.name%></h4>
+              </div>
+              <div class="col-xs-9">
+                <h4><%=rev.rating%>/5</h4>
+                <p><%= rev.content%></p>
+                <hr>
+              </div>
+            </div>
+            <% end%>
+          </div>
         </div>
       </div>
-      <hr> -->
+      <hr>
       <div class="row">
         <div class="col-xs-10 col-xs-offset-2">
           <div class="owner-card">
@@ -123,24 +144,32 @@
     </div>
     <div class="col-xs-12 col-md-3">
       <div class="booking-title">
-        <h4>Book <%= @cat.name%>!</h4>
+        <% if @current_user_past_booking %>
+          <h4>Review <%= @cat.name%>!</h4>
+        <% else %>
+          <h4>Book <%= @cat.name%>!</h4>
+        <% end %>
       </div>
       <div class="booking">
         <% if current_user.nil? %>
           <p>Please <%= link_to 'sign up', '/users/sign_up', class: "btn btn-primary" %> to book a cat!</p>
         <% else %>
-            <%= form_tag(new_cat_booking_path(@cat), method: :get, class: "booking_form text-center") %>
+            <% if @current_user_review_needed %>
+              <%= render 'reviews/form', booking: @current_user_past_booking, review: @review%>
+            <% else %>
+              <%= form_tag(new_cat_booking_path(@cat), method: :get, class: "booking_form text-center") %>
 
-            <div class="input-group input-daterange" id="booking_period" >
-              <%= text_field_tag :start_at, nil, placeholder: 'Sart date', class: "form-control actual_range" %>
-              <br>
-              <%= text_field_tag :ends_at, nil, placeholder: "End date", class: "form-control actual_range"%>
-            </div>
+              <div class="input-group input-daterange" id="booking_period" >
+                <%= text_field_tag :start_at, nil, placeholder: 'Sart date', class: "form-control actual_range" %>
+                <br>
+                <%= text_field_tag :ends_at, nil, placeholder: "End date", class: "form-control actual_range"%>
+              </div>
 
-            <%= hidden_field_tag :user_id, current_user.id %>
-            <%= hidden_field_tag :cat_id, @cat.id %>
-            <%= hidden_field_tag :price_per_day, @cat.price_per_day %>
-            <%= submit_tag "Book #{@cat.name}", class: "btn btn-primary" %>
+              <%= hidden_field_tag :user_id, current_user.id %>
+              <%= hidden_field_tag :cat_id, @cat.id %>
+              <%= hidden_field_tag :price_per_day, @cat.price_per_day %>
+              <%= submit_tag "Book #{@cat.name}", class: "btn btn-primary" %>
+            <% end %>
         <% end %>
       </div>
     </div>
