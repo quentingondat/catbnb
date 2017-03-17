@@ -9,12 +9,14 @@
           <!-- Search form -->
     <div class="navbar-catbnb-item">
       <% unless  params[:controller] == "pages" && params[:action] == "home" %>
-        <form action="/cats" method="get" class="navbar-catbnb-search">
-          <input type="text" name="address" class="navbar-catbnb-search-input" placeholder="Search for a cat">
-          <button type="submit" class="navbar-catbnb-search-btn">
-            <i class="fa fa-search"></i>
-          </button>
-        </form>
+        <%= form_tag '/cats', method: :get, class: "form-inline navbar-catbnb-search" do  %>
+          <%= text_field_tag 'address', nil, placeholder: "Region / City / Address", value: session[:address], class: "form-control input-md navbar-catbnb-search-input" %>
+          <div class="form-group input-daterange" id="booking_period" style="display:inline;">
+            <%= text_field_tag 'start_at', nil, placeholder: 'Start date', value: session[:booking_start_at], class: "form-control input-md actual_range navbar-catbnb-search-input" %>
+            <%= text_field_tag 'end_at', nil, placeholder: 'End date', value: session[:booking_end_at], class: "form-control input-md actual_range navbar-catbnb-search-input" %>
+            </div>
+            <%= submit_tag "Search", class: "btn btn-md btn-primary" %>
+        <% end %>
       <% end %>
     </div>
   </div>

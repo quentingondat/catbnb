@@ -7,6 +7,8 @@ class Cat < ApplicationRecord
   validates :age, presence: true
   validates :description, presence: true
   validates :price_per_day, presence: true
+  validates :start_at, presence: true
+  validates :end_at, presence: true
 
   has_attachment :photo
 
