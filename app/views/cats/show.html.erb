@@ -85,23 +85,7 @@
             <h4>
               <%=@cat.reviews.count%> <%= pluralize @cat.reviews.size, "review" %>!
               </h4>
-            <% @reviews.each do |rev|%>
-            <div class="row">
-              <div class="col-xs-3">
-                <% if rev.user.photo? %>
-                  <%= cl_image_tag rev.user.photo.path, class: "avatar-large"%>
-                <% else %>
-                  <img class="avatar-large" src="http://lorempixel.com/200/200/people/<%=@cat.id%>">
-                <% end %>
-                <h4><%= rev.user.name%></h4>
-              </div>
-              <div class="col-xs-9">
-                <h4><%=rev.rating%>/5</h4>
-                <p><%= rev.content%></p>
-                <hr>
-              </div>
-            </div>
-            <% end%>
+
           </div>
         </div>
       </div>
@@ -160,9 +144,9 @@
               <%= form_tag(new_cat_booking_path(@cat), method: :get, class: "booking_form text-center") %>
 
             <div class="input-group input-daterange" id="booking_period" >
-              <%= text_field_tag :start_at, nil, placeholder: 'Start date', class: "form-control actual_range" %>
+              <%= text_field_tag :start_at, nil, placeholder: 'Start date', value: session[:booking_start_at], class: "form-control actual_range" %>
               <br>
-              <%= text_field_tag :ends_at, nil, placeholder: "End date", class: "form-control actual_range"%>
+              <%= text_field_tag :ends_at, nil, placeholder: "End date", value: session[:booking_end_at], class: "form-control actual_range"%>
             </div>
               <%= hidden_field_tag :user_id, current_user.id %>
               <%= hidden_field_tag :cat_id, @cat.id %>
