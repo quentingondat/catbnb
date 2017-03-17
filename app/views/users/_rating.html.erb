@@ -1,5 +1,9 @@
 <div class="cat-rating">
-  <% user.bookings.each{|bk| bk.reviews.find{|e| e.user != user}.nil? ? count += 0 : count += 1} %>
+  <% user.bookings.each do |bk| %>
+    <% unless bk.reviews.find{|rv| rv.user != user}.nil? %>
+      <% count += 1 %>
+    <% end %>
+  <% end %>
   <% if count == 0 %>
     <small>no reviews yet</small>
   <% else %>
