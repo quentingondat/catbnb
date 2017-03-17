@@ -1,9 +1,14 @@
 <div class="wrapper text-center container-with-footer">
-  <h1 class="no-top-margin">Meet <%=current_user.name%></h1>
+
+  <% if user_signed_in? && current_user.id == @user.id%>
+    <h1 class="no-top-margin">My profile</h1>
+  <%else%>
+    <h1 class="no-top-margin">Meet <%=@user.name%></h1>
+  <%end%>
 
   <div class="big-avatar">
-    <% if current_user.photo? %>
-      <%= cl_image_tag current_user.photo.path, :transformation=>[
+    <% if @user.photo? %>
+      <%= cl_image_tag @user.photo.path, :transformation=>[
     {:width=>300, :height=>300, :gravity=>"face", :radius=>"max", crop: :fill},
     {width: 150, crop: :fill}
     ] %>
@@ -12,21 +17,21 @@
   </div>
   <div class="align">
     <p><strong>Name :</strong></p>
-    <p><%=current_user.name%></p>
+    <p><%=@user.name%></p>
   </div>
     <br>
   <div class="align">
     <p><strong>Email address :</strong></p>
-    <p><%=current_user.email%></p>
+    <p><%=@user.email%></p>
   </div>
     <br>
   <p><strong>Description :</strong></p>
-  <p><%=current_user.description%></p>
+  <p><%=@user.description%></p>
 
-  <% if user_signed_in?%>
+  <% if user_signed_in? && current_user.id == @user.id%>
     <div class="btn-edit">
       <%= link_to "Edit Profile", edit_profile_path, class: "btn btn-primary btn-space" %>
-      <%= link_to "Delete Profile", user_path(current_user), class: "btn btn-danger", method: :delete, data: { confirm: "Are you sure?" } %>
+      <%= link_to "Delete Profile", user_path(@user), class: "btn btn-danger", method: :delete, data: { confirm: "Are you sure?" } %>
 
     </div>
   <% end %>
