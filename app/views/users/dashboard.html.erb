@@ -24,7 +24,7 @@
                   <h1><%= cat.name %></h1>
                 </div>
                 <div class="dashboard-cat-rating">
-                  <%= render 'cats/rating', cat: cat, count: 0 %>
+                  <%= render 'cats/rating', cat: cat, count: 0, reviews: cat.reviews %>
                 </div>
                   <% x = 0 %>
                   <% y = 0 %>
@@ -71,7 +71,7 @@
                         <% end %>
 
                           <li><p class="text-center"><%=booking.user.name%></p></li>
-                          <li><p><%= render 'users/rating', user: booking.user, count: 0 %></p></li>
+                          <li><p><%= render 'users/rating', user: booking.user, count: 0, reviews: @reviews %></p></li>
                         <li><p>from : <%= booking.start_at %></p>
                             <p>to : <%= booking.ends_at %></p>
                         </li>
@@ -124,7 +124,7 @@
                   <h1 class="fixe-button-widht"><%= booking.cat.name %></h1>
                 </div>
                 <div class="dashboard-cat-rating fixe-button-widht">
-                  <%= render 'cats/rating', cat: booking.cat, count: 0 %>
+                  <%= render 'cats/rating', cat: booking.cat, count: 0, reviews: booking.cat.reviews %>
                 </div>
                 <div class="dashboard-cat-date">
                   <ul>

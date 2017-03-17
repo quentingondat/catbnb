@@ -36,6 +36,13 @@ class UsersController < ApplicationController
 
   def dashboard
     @cat = Booking.order(:updated_at).last.cat
+    @reviews = []
+    current_user.bookings.each do |bk|
+      unless bk.reviews.find { |rv| rv.user != @user }.nil?
+        rev = bk.reviews.find { |rv| rv.user != @user }
+        @reviews << rev
+      end
+    end
   end
 
   private
