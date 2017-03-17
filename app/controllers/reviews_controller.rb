@@ -5,9 +5,17 @@ class ReviewsController < ApplicationController
     @review.booking = @booking
     @review.user = current_user
     if @review.save
-      redirect_to cat_path(@booking.cat)
+      if current_user == @booking.cat.user
+        redirect_to user_path(@booking.user)
+      else
+        redirect_to cat_path(@booking.cat)
+      end
     else
-      render cat_path @booking.cat
+      if current_user == @booking.cat.user
+        render user_path(@booking.user)
+      else
+        render cat_path(@booking.cat)
+      end
     end
   end
 
