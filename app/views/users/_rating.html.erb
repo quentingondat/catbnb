@@ -1,18 +1,10 @@
 <div class="cat-rating">
-  <% user.bookings.each do |bk| %>
-    <% unless bk.reviews.find{|rv| rv.user != user}.nil? %>
-      <% count += 1 %>
-    <% end %>
-  <% end %>
+  <% count = reviews.count %>
   <% if count == 0 %>
     <small>no reviews yet</small>
   <% else %>
     <% mean = 0 %>
-    <% user.bookings.each do |e| %>
-      <% unless e.reviews.find{|rv| rv.user != user}.nil? %>
-        <% mean += e.reviews.find{|rv| rv.user != user}.rating.to_i.fdiv(count) %>
-      <% end%>
-    <% end %>
+    <% reviews.each { |e| mean += (e.rating.to_i.fdiv(count)) } %>
     <% mean.round.times do %>
       <i class="fa fa-star" aria-hidden="true"></i>
     <% end %>
