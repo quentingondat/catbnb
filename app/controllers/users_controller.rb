@@ -2,7 +2,13 @@ class UsersController < ApplicationController
   before_action :set_user, only: [:show]
 
   def show
-    @reviews = @user.reviews.all
+    @reviews = []
+    @user.bookings.each do |bk|
+      unless bk.reviews.find { |rv| rv.user != @user }.nil?
+        rev = bk.reviews.find { |rv| rv.user != @user }
+      end
+      @reviews << rev
+    end
     if !current_user.nil?
       @user_past_booking = @user.bookings.find{ |e| (e.cat.user == current_user) && (e.ends_at < DateTime.now)}
       if @user_past_booking.nil?
