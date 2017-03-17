@@ -55,7 +55,7 @@
                 </div>
               </div>
               <div class="col-xs-3">
-                <%= render 'rating', cat: @cat, count: 0, review: @reviews %>
+                <%= render 'rating', cat: @cat, count: 0, reviews: @reviews %>
               </div>
               <div class="col-xs-3">
                 <div class="cat-age">
@@ -80,7 +80,7 @@
         <div class="col-xs-10 col-xs-offset-2">
           <div class="reviews-div">
             <h4>
-              <%= pluralize @cat.reviews.size, "review" %>!
+              <%= pluralize @reviews.size, "review" %>!
               </h4>
             <% @reviews.each do |rev|%>
             <div class="row">
