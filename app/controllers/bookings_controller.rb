@@ -33,6 +33,7 @@ class BookingsController < ApplicationController
 
   def accept
     booking = Booking.find(params[:id])
+    @modified_booking_id = params[:id]
     booking.accepted = true
     booking.save
     redirect_to dashboard_path

@@ -44,7 +44,7 @@
                     <% end %>
                   <% end %>
                 <div class="pending-bookings">
-                  <p><%= x %> pending</p>
+                  <p><%= x %> pending...</p>
                 </div>
                 <div class="pending-bookings">
                   <p><%= x + y + z %> booking(s)</p>
@@ -69,8 +69,10 @@
                     <% cat.bookings.each do |booking| %>
                       <ul class="dashboard-booking-list list-inline">
                         <li>
-                        <% if booking.user.photo? %>
-                        <%= cl_image_tag booking.user.photo.path, width: 50, height: 50, crop: :fill, class: "cat-image" %></li>
+                        <%= link_to user_path(booking.user) do %>
+                          <% if booking.user.photo? %>
+                          <%= cl_image_tag booking.user.photo.path, width: 50, height: 50, crop: :fill, class: "cat-image" %></li>
+                          <% end %>
                         <% end %>
                           <li><p class="text-center"><%=booking.user.name%></p></li>
                           <li><p><div class="dashboard-cat-rating">
@@ -85,19 +87,25 @@
                         </li>
                         <li><%= booking.price_per_day %><i class="fa fa-euro"></i></li>
                         <li>
-                          <% if booking.accepted == nil %>
-                          <ul class="items-center">
-                            <li class="accept-or-decline-list"> <%= link_to accept_booking_path(booking), method: :patch do  %>
-                            <%= image_tag "002-check.png", width: 20, height: 20, crop: :fill, class: "accept-or-decline" %>
-                          <% end %></li>
-                            <li class="accept-or-decline-list"><%= link_to decline_booking_path(booking), method: :patch do  %>
-                            <%= image_tag "001-cancel.png", width: 20, height: 20, crop: :fill, class: "accept-or-decline" %>
-                          <% end %></li>
-                          </ul>
-                          <% elsif booking.accepted == true %>
-                            <button class="btn btn-success">Accepted</button>
-                          <% elsif booking.accepted == false %>
-                            <button class="btn btn-danger">Declined</button>
+                          <% if booking.start_at > Date.today %>
+                            <% if booking.accepted == nil %>
+                            <ul class="items-center">
+                              <li class="accept-or-decline-list"> <%= link_to accept_booking_path(booking), method: :patch do  %>
+                              <%= image_tag "002-check.png", width: 20, height: 20, crop: :fill, class: "accept-or-decline" %>
+                            <% end %></li>
+                              <li class="accept-or-decline-list"><%= link_to decline_booking_path(booking), method: :patch do  %>
+                              <%= image_tag "001-cancel.png", width: 20, height: 20, crop: :fill, class: "accept-or-decline" %>
+                            <% end %></li>
+                            </ul>
+                            <% elsif booking.accepted == true %>
+                              <div class="accepted-button-dash fixe-button-widht text-center"><p>Accepted</p></div>
+                            <% elsif booking.accepted == false %>
+                              <div class="declined-button-dash fixe-button-widht text-center"><p>Declined</p></div>
+                            <% end %>
+                          <% elsif booking.ends_at < Date.today %>
+                            <%= link_to user_path(booking.user) do %>
+                              <button class="btn btn-primary fixe-button-widht">Add review</button>
+                            <% end %>
                           <% end %>
                         </li>
                       </ul>
@@ -110,43 +118,52 @@
         </div>
         <div class="dashboard-tab-content hidden" id="mybookings-content">
           <% current_user.bookings.each do |booking|%>
-            <div class="dashboard-cat-informations">
-                <div class="dashboard-cat-photo">
-                  <% if booking.cat.photo? %>
-                    <%= cl_image_tag booking.cat.photo.path, transformation: [{width: 60, height: 60, gravity: 'face', radius: 'max', crop: 'fill'}], class: "cat-image" %>
-                    <% else %>
-                    <%= image_tag "cat-icon.png", width: 60, height: 60, crop: :fill, class: "cat-image" %>
+            <div class="dashboard-booking-informations">
+                <div class="dashboard-cat-photo fixe-button-widht">
+                  <%= link_to cat_path(booking.cat) do %>
+                    <% if booking.cat.photo? %>
+                      <%= cl_image_tag booking.cat.photo.path, transformation: [{width: 60, height: 60, gravity: 'face', radius: 'max', crop: 'fill'}], class: "cat-image" %>
+                      <% else %>
+                      <%= image_tag "cat-icon.png", width: 60, height: 60, crop: :fill, class: "cat-image" %>
+                    <% end %>
                   <% end %>
-                  <h1><%= booking.cat.name %></h1>
+                  <h1 class="fixe-button-widht"><%= booking.cat.name %></h1>
                 </div>
-                <div class="dashboard-cat-rating">
+                <div class="dashboard-cat-rating fixe-button-widht">
                   <i class="fa fa-star" aria-hidden="true"></i>
                   <i class="fa fa-star" aria-hidden="true"></i>
                   <i class="fa fa-star" aria-hidden="true"></i>
                   <i class="fa fa-star-half" aria-hidden="true"></i>
                   <small>82</small>
                 </div>
-                <div class="dashboard-cat-photo">
+                <div class="dashboard-cat-date">
                   <ul>
                     <li>from: <%= booking.start_at %></li>
                     <li>to: <%= booking.ends_at %></li>
                   </ul>
                 </div>
-                <div class="dashboard-bookings-infos">
+                <div class="dashboard-bookings-price fixe-button-widht text-center">
                   <p><%= booking.price_per_day %><i class="fa fa-euro"></i></p>
                 </div>
                 <div>
-                  <% if booking.accepted == nil %>
-                    <button class="btn btn-warning">Pending</button>
-                    <% elsif booking.accepted == true %>
-                      <button class="btn btn-success">Accepted</button>
-                    <% elsif booking.accepted == false %>
-                      <button class="btn btn-danger">Decline</button>
-                  <% end %>
+                       <% if booking.accepted == nil %>
+                        <div class="pending-button-dash fixe-button-widht text-center"><p>Pending...</p></div>
+                      <% elsif booking.accepted == true %>
+                        <div class="accepted-button-dash fixe-button-widht text-center"><p>Accepted</p></div>
+                      <% elsif booking.accepted == false %>
+                        <div class="declined-button-dash fixe-button-widht text-center"><p>Declined</p></div>
+                    <% end %>
+
                 </div>
                 <div>
-                  <%= link_to booking_path(booking), method: :delete, data: { confirm: 'Are you sure?' } do %>
-                    <button class="btn-primary">Cancel booking</button>
+                  <% if booking.start_at > Date.today %>
+                    <%= link_to booking_path(booking), method: :delete, data: { confirm: 'Are you sure?' } do %>
+                      <div class="cancel-button-dash fixe-button-widht text-center"><p>Cancel</p></div>
+                    <% end %>
+                 <% elsif booking.ends_at < Date.today %>
+                    <%= link_to cat_path(booking.cat) do %>
+                      <div class="cancel-button-dash fixe-button-widht text-center"><p>Add review</p></div>
+                    <% end %>
                   <% end %>
               </div>
             </div>
@@ -164,15 +181,15 @@
           <% end %>
           </div>
           <div class="right-card-elem">
-            <%= current_user.name %>
+            <h3>  <%= current_user.name %></h3>
           <div class="right-card-elem"->
             <%= link_to  user_path(current_user), class: "text-center" do %>
-              View my profile
+              <p>  My profile</p>
             <% end %>
           </div>
           <div class="right-card-elem"->
             <%= link_to new_cat_path class: "text-center" do %>
-              Create a new cat
+              <p> New cat </p>
             <% end %>
           </div>
         </div>
@@ -180,4 +197,13 @@
     </div>
   </div>
 
-
+<% content_for(:after_js) do %>
+<script>
+  $(document).ready(function() {
+    var cat_id = <%= @cat.id %>;
+    console.log(cat_id);
+    console.log("kksdbfkjsbkjfjk");
+    $("#hidden-"+cat_id).toggleClass('hidden');
+  });
+</script>
+<% end %>
