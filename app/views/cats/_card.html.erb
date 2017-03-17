@@ -10,14 +10,7 @@
         <div class="card-index-text-price">
           <strong><%=cat.price_per_day%> €</strong>
         </div>
-        <div class="cat-rating">
-          <i class="fa fa-star" aria-hidden="true"></i>
-          <i class="fa fa-star" aria-hidden="true"></i>
-          <i class="fa fa-star" aria-hidden="true"></i>
-          <i class="fa fa-star" aria-hidden="true"></i>
-          <i class="fa fa-star-half" aria-hidden="true"></i>
-          <small>82 commentaires</small>
-        </div>
+        <%= render 'rating', cat: cat, count: 0%>
       </div>
       <div class="card-index-text-row">
         <h5><%=cat.name%> - <%=cat.race%></h5>

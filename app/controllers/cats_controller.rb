@@ -21,12 +21,16 @@ class CatsController < ApplicationController
     @cat = Cat.find(params[:id])
     @booking = Booking.new
     @cat_coordinates = { lat: @cat.latitude, lng: @cat.longitude }
-    # @reviews = @cat.reviews.all
-    # if !current_user.nil?
-    #   @current_user_past_booking = current_user.bookings.find{ |e| (e.cat == @cat) && (e.ends_at < DateTime.now)}
-    #   @current_user_review_needed = @current_user_past_booking.reviews.find{ |e| e.user_id == current_user.id }.nil?
-    #   @review = Review.new
-    # end
+    @reviews = @cat.reviews.all
+    if !current_user.nil?
+      @current_user_past_booking = current_user.bookings.find{ |e| (e.cat == @cat) && (e.ends_at < DateTime.now)}
+        if !@current_user_past_booking.nil?
+          @current_user_review_needed = @current_user_past_booking.reviews.find{ |e| e.user_id == current_user.id }.nil?
+        else
+          @current_user_review_needed = false
+        end
+      @review = Review.new
+    end
   end
 
   def create
