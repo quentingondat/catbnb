@@ -16,6 +16,17 @@
   align-items: center;
   cursor: pointer;
 }
+.dashboard-booking-informations {
+  margin-top: 10px;
+  padding-right: 20px;
+  padding-left: 20px;
+  background-color: #F7F7F7;
+  border-radius: 5px;
+  color: black;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
 .cat-image {
   border-radius: 10px;
   display: flex;
@@ -41,10 +52,15 @@
   margin-top: 10px;
 }
 .right-card-elem {
-  margin-top: 10px;
-  padding-top: 10px;
+  padding-top: 8px;
   border-bottom: #F7F7F7;
+  a  {
+    color: black;
+  }
 }
+.right-card-elem a:hover {
+    color: #da552f;
+  }
 
 .dashboard-cat-rating i {
   color: #FDB631;
@@ -133,6 +149,27 @@
   margin: 2px;
   margin-right: 40px;
 }
-.dashboard-mybooking-list {
-  background: black;
+.fixe-button-widht {
+  width: 100px;
+  font-size: 15px;
 }
+.accepted-button-dash {
+  color: #269707;
+  padding: 2px;
+}
+.declined-button-dash {
+  color: #D23333;
+  padding: 2px;
+}
+.pending-button-dash {
+  color: #E67E22;
+  padding: 2px;
+}
+.cancel-button-dash {
+  color: #469AE0;
+  padding: 2px;
+}
+.dashboard-cat-date {
+  padding-top: 13px;
+}
+

@@ -29,10 +29,7 @@ class UsersController < ApplicationController
   end
 
   def dashboard
-
-    #@my_offers = current_user.offers
-    #bookings
-    #bookings
+    @cat = Booking.order(:updated_at).last.cat
   end
 
   private

@@ -87,7 +87,6 @@
   z-index: 1;
 }
 .navbar-catbnb-search-input {
-  flex: 0 1 300px;
   transition: all 0.15s ease;
   line-height: 40px;
   font-weight: lighter;
@@ -97,6 +96,7 @@
   padding: 0 10px;
   font-size: 14px;
   outline: none;
+  margin-right: 10px;
 }
 .navbar-catbnb-search-input:focus  {
   border: 1px solid #CCCCCC;

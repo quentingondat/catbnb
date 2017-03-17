@@ -16,9 +16,9 @@ $(document).ready(function() {
 
 $(document).ready(function() {
   $(".dashboard-cat-informations").on('click', function() {
-
     var cat_id = $(this).attr('id');
     console.log(cat_id);
     $("#hidden-"+cat_id).toggleClass('hidden');
   });
 });
+
